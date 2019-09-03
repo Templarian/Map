@@ -1,0 +1,111 @@
+button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    background: #FFF;
+    border: 0;
+    padding: 1rem;
+    box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.3);
+    outline: 0;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+button:active {
+    box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+button.variant-error {
+    background: #FF6961;
+    color: #FFF;
+}
+
+button.variant-error svg path {
+    fill: #C23B23;
+}
+
+button.variant-error:hover svg path {
+    fill: #FFF;
+}
+
+button.variant-warning {
+    background: #FDF7C2;
+}
+
+button.variant-warning svg path {
+    fill: #cec78d;
+}
+
+button.variant-warning:hover svg path {
+    fill: #444;
+}
+
+button.seconds-1,
+button.seconds-2,
+button.seconds-3,
+button.seconds-4,
+button.seconds-5 {
+    margin-bottom: 1.25rem;
+}
+
+button.seconds-1::after,
+button.seconds-2::after,
+button.seconds-3::after,
+button.seconds-4::after,
+button.seconds-5::after {
+    content: ' ';
+    position: absolute;
+    background: rgba(21, 146, 230, 0.5);
+    height: 0.25rem;
+    width: 2rem;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+button.seconds-1::after {
+    animation: progress 1s linear;
+}
+
+button.seconds-2::after {
+    animation: progress 2s linear;
+}
+
+button.seconds-3::after {
+    animation: progress 3s linear;
+}
+
+button.seconds-4::after {
+    animation: progress 4s linear;
+}
+
+button.seconds-5::after {
+    animation: progress 5s linear;
+}
+
+button svg path {
+    fill: #444;
+}
+
+button:hover svg path {
+    fill: rgba(21, 146, 230, 1);
+}
+
+svg {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    right: 0.5rem;
+    top: 0.75rem;
+}
+
+@keyframes progress {
+    from { width: 0; }
+    to   { width: 20rem; }
+}
