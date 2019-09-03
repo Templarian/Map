@@ -6,14 +6,16 @@ export default function getObservable(config) {
         return undefined;
     }
     const subject = getSubject(undefined, undefined);
-    fetch('mock/mock.map.json')
-        .then(data => data.json())
-        .then(data => {
-            console.log(data);
-            subject.next(data);
-        }, () => {
-            subject.error({ message: 'Failed to load map.' })
-        });
+    if (config.id !== null) {
+        fetch(`mock/mock.${config.id}.json`)
+            .then(data => data.json())
+            .then(data => {
+                console.log(data);
+                subject.next(data);
+            }, () => {
+                subject.error({ message: 'Failed to load map.' })
+            });
+    }
     return subject.observable;
 }
 

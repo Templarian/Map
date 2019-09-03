@@ -10,13 +10,14 @@ export default function getObservable(config) {
 
 let uniqueId = 0;
 
-function toast(message, seconds = 0, variant = 'default') {
+function toast({ message, dismissable = true, seconds = 0, variant = 'default' }) {
     var id = uniqueId++;
     var toast = {
         id,
         message,
         seconds,
-        variant
+        variant,
+        dismissable
     };
     toasts.push(toast);
     subject.next(toasts);
@@ -29,21 +30,31 @@ function toast(message, seconds = 0, variant = 'default') {
 }
 
 export function addToast(message, seconds = 0) {
-    return toast(message, seconds);
+    return toast({ message, seconds });
 }
 
 export function addErrorToast(message, seconds = 0) {
-    return toast(message, seconds, 'error');
+    return toast({ message, seconds, variant: 'error' });
 }
 
 export function addWarningToast(message, seconds = 0) {
-    return toast(message, seconds, 'warning');
+    return toast({ message, seconds, variant: 'warning' });
+}
+
+export function addLoadingToast(message, seconds = 0) {
+    return toast({ message, seconds, variant: 'loading', dismissable: false });
 }
 
 export function removeToast(id) {
     id = parseInt(id);
     toasts.splice(toasts.findIndex(x => x.id === id), 1);
     subject.next(toasts);
+}
+
+export function removeAllToasts() {
+    toasts.forEach(toast => {
+        removeToast(toast.id);
+    })
 }
 
 export function getToasts(config) {

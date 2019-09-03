@@ -14,6 +14,10 @@ export default class ToastItem extends LightningElement {
         return cls.join(' ');
     }
 
+    get dismissable() {
+        return this.toast.dismissable;
+    }
+
     handleClick(e) {
         removeToast(e.target.dataset.id);
     }

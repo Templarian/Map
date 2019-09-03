@@ -17,8 +17,45 @@ button:hover {
     box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.4);
 }
 
+button svg {
+    fill: #444;
+}
+
+button:hover svg{
+    fill: rgba(21, 146, 230, 1);
+}
+
 button:active {
     box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+button svg.loading {
+    display: none;
+}
+
+span {
+    display: block;
+    text-align: left;
+    position: relative;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    background: #FFF;
+    border: 0;
+    padding: 1rem;
+    box-shadow: 0 1px 0.5rem rgba(0, 0, 0, 0.3);
+    outline: 0;
+}
+
+span.variant-loading {
+    padding-left: 2.75rem;
+}
+
+span.variant-loading svg.loading {
+    fill: rgba(21, 146, 230, 1);
+}
+
+button.variant-loading svg.loading {
+    display: none;
 }
 
 button.variant-error {
@@ -26,11 +63,11 @@ button.variant-error {
     color: #FFF;
 }
 
-button.variant-error svg path {
+button.variant-error svg.close {
     fill: #C23B23;
 }
 
-button.variant-error:hover svg path {
+button.variant-error:hover svg.close {
     fill: #FFF;
 }
 
@@ -38,12 +75,20 @@ button.variant-warning {
     background: #FDF7C2;
 }
 
-button.variant-warning svg path {
+button.variant-warning svg.close {
     fill: #cec78d;
 }
 
-button.variant-warning:hover svg path {
+button.variant-warning:hover svg.close {
     fill: #444;
+}
+
+button.variant-loading svg.loading {
+    display: initial;
+}
+
+button.variant-loading svg.close {
+    display: none;
 }
 
 button.seconds-1,
@@ -89,15 +134,7 @@ button.seconds-5::after {
     animation: progress 5s linear;
 }
 
-button svg path {
-    fill: #444;
-}
-
-button:hover svg path {
-    fill: rgba(21, 146, 230, 1);
-}
-
-svg {
+svg.close {
     position: absolute;
     width: 1.5rem;
     height: 1.5rem;
@@ -105,7 +142,25 @@ svg {
     top: 0.75rem;
 }
 
+svg.loading {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    left: 0.75rem;
+    top: 0.75rem;
+    animation: spin 2s infinite linear;
+}
+
 @keyframes progress {
     from { width: 0; }
     to   { width: 20rem; }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
 }
