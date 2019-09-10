@@ -1,5 +1,5 @@
 import { buildCustomElementConstructor, register } from 'lwc';
-import { registerWireService } from 'wire-service';
+import { registerWireService } from '@lwc/wire-service';
 import MapApp from 'map/app';
 
 registerWireService(register);

@@ -1,7 +1,7 @@
-import { register, ValueChangedEvent } from 'wire-service';
-import { getSubject, getImmutableObservable } from './util';
+import { register, ValueChangedEvent } from '@lwc/wire-service';
+import { getSubject } from './util';
 
-export default function getObservable(config) {
+export function getObservable(config: any) {
     if (!config || !('id' in config)) {
         return undefined;
     }
@@ -19,7 +19,7 @@ export default function getObservable(config) {
     return subject.observable;
 }
 
-export function getMap(config) {
+export function getMap(config: any) {
     return new Promise((resolve, reject) => {
         const observable = getObservable(config);
         if (!observable) {
@@ -27,23 +27,23 @@ export function getMap(config) {
         }
 
         observable.subscribe({
-            next: value => resolve(value),
-            error: error => reject(error),
+            next: (value: any) => resolve(value),
+            error: (error: any) => reject(error),
             complete: resolve,
         });
     });
 }
 
 register(getMap, function getMapWireAdapter(wiredEventTarget) {
-    let subscription;
-    let config;
+    let subscription: any;
+    let config: any;
 
     wiredEventTarget.dispatchEvent(new ValueChangedEvent({ data: undefined, error: undefined }));
 
     const observer = {
-        next: data =>
+        next: (data: any) =>
             wiredEventTarget.dispatchEvent(new ValueChangedEvent({ data, error: undefined })),
-        error: error =>
+        error: (error: any) =>
             wiredEventTarget.dispatchEvent(new ValueChangedEvent({ data: undefined, error }))
     };
 

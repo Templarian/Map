@@ -1,10 +1,10 @@
 import { LightningElement, api } from 'lwc';
-import { removeToast } from '../../../services/toastService';
+import { removeToast } from 'services/toastService';
 
 export default class ToastItem extends LightningElement {
 
     @api
-    toast;
+    toast: any;
 
     get computedClass() {
         var cls = [`variant-${this.toast.variant}`];
@@ -18,7 +18,7 @@ export default class ToastItem extends LightningElement {
         return this.toast.dismissable;
     }
 
-    handleClick(e) {
+    handleClick(e: any) {
         removeToast(e.target.dataset.id);
     }
 

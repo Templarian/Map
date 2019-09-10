@@ -1,21 +1,22 @@
 import { LightningElement, track, wire } from 'lwc';
-import { getMap } from '../../../services/mapService';
-import { addToast, addErrorToast, addWarningToast, addLoadingToast, removeToast, removeAllToasts } from '../../../services/toastService';
+import { getMap } from 'services/mapService';
+import { addToast, addErrorToast, addWarningToast, addLoadingToast, removeToast } from 'services/toastService';
+import World from 'models/world';
 
 export default class App extends LightningElement {
 
-    @track tile = { complex: 'object' };
-    @track tileId = null;
-    @track map = null;
+    @track tile: any = { complex: 'object' };
+    @track tileId: any = null;
+    @track world: World | null = null;
 
     @wire(getMap, { id: '$tileId' })
-    function({ error, data }) {
+    function({ error, data }: any) {
         if (data) {
-            this.map = data;
+            this.world = new World().from(data);
             removeToast(this.loadingToastId);
         }
         if (error) {
-            this.map = null;
+            this.world = null;
             this.tileId = null;
             addErrorToast('Failed to load map!', 5000);
             removeToast(this.loadingToastId);
@@ -23,10 +24,10 @@ export default class App extends LightningElement {
     }
 
     get data() {
-        return JSON.stringify(this.map);
+        return JSON.stringify(this.world);
     }
 
-    loadingToastId;
+    loadingToastId: any;
 
     loadMap() {
         this.tileId = 'map';

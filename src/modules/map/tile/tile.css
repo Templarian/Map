@@ -1,0 +1,26 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+button {
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+  outline: none;
+  background: transparent;
+  border: 0;
+  cursor: inherit;
+}
+
+button:hover {
+  border: 0.25rem solid #FFF;
+  margin: -0.25rem;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  width: 4.5rem;
+  height: 4.5rem;
+}

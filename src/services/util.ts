@@ -1,6 +1,6 @@
-export function getImmutable(obj) {
+export function getImmutable(obj: any): any {
     const handler = {
-        get: (target, key) => {
+        get: (target: any, key: any) => {
             const value = target[key];
             if (value && typeof value === 'object') {
                 return getImmutable(value);
@@ -18,19 +18,19 @@ export function getImmutable(obj) {
 }
 
 // wraps a value in an observable that emits one immutable value
-export function getImmutableObservable(value) {
-    return getSubject(getImmutable(value)).observable;
+export function getImmutableObservable(value: any) {
+    return getSubject(getImmutable(value), undefined).observable;
 }
 
 // gets a subject with optional initial value and initial error
-export function getSubject(initialValue, initialError) {
-    let observer;
+export function getSubject(initialValue: any, initialError: any): any {
+    let observer: any;
 
-    function next(value) {
+    function next(value: any) {
         observer.next(value);
     }
 
-    function error(err) {
+    function error(err: any) {
         observer.error(err);
     }
 
@@ -39,7 +39,7 @@ export function getSubject(initialValue, initialError) {
     }
 
     const observable = {
-        subscribe: obs => {
+        subscribe: (obs: any) => {
             observer = obs;
             if (initialValue) {
                 next(initialValue);

@@ -1,11 +1,11 @@
 import { LightningElement, track, api } from 'lwc';
 
 export default class Tile extends LightningElement {
-    @track isLoading = true;
+    @track isLoading: boolean = true;
 
-    _tile = null;
+    _tile: any = null;
 
-    @api tileId;
+    @api tileId: any;
 
     @api
     get tile() {
