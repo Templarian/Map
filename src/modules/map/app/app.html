@@ -6,7 +6,9 @@
     <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
     <map-button onclick={loadMap}>Load Map</map-button>
     <map-button onclick={loadMap2}>Load Error</map-button>
-    <map-tile tile={tile} tile-id={tileId}></map-tile>
+    <map-world>
+        <map-tile tile={tile} tile-id={tileId}></map-tile>
+    </map-world>
     <map-details name="Foo"></map-details>
     {data}
 </template>

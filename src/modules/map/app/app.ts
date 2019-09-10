@@ -30,12 +30,12 @@ export default class App extends LightningElement {
     loadingToastId: any;
 
     loadMap() {
-        this.tileId = 'map';
+        this.tileId = 'world';
         this.loadingToastId = addLoadingToast('Loading Map...');
     }
 
     loadMap2() {
-        this.tileId = 'map1';
+        this.tileId = 'world1';
         this.loadingToastId = addLoadingToast('Loading Map...');
     }
 
