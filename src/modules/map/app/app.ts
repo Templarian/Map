@@ -2,12 +2,14 @@ import { LightningElement, track, wire } from 'lwc';
 import { getMap } from 'services/mapService';
 import { addToast, addErrorToast, addWarningToast, addLoadingToast, removeToast } from 'services/toastService';
 import World from 'models/world';
+//import { mdiAccount } from '@mdi/js';
 
 export default class App extends LightningElement {
 
     @track tile: any = { complex: 'object' };
     @track tileId: any = null;
     @track world: World | null = null;
+    @track mdiAccount: string = 'M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z';
 
     @wire(getMap, { id: '$tileId' })
     function({ error, data }: any) {

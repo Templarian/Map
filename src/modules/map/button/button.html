@@ -1,5 +1,7 @@
 <template>
   <button onclick={handleClick}>
+    <slot name="left"></slot>
     <slot></slot>
+    <slot name="right"></slot>
   </button>
 </template>

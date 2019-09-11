@@ -1,6 +1,9 @@
 <template>
     <map-toast></map-toast>
-    <map-button onclick={fireToast}>Fire Toast</map-button>
+    <map-button onclick={fireToast}>
+        <map-icon slot="left" path={mdiAccount}></map-icon>
+        Fire Toast
+    </map-button>
     <map-button onclick={fireToast3}>Fire Toast 3 Seconds</map-button>
     <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
     <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
@@ -11,4 +14,5 @@
     </map-world>
     <map-details name="Foo"></map-details>
     {data}
+    <map-icon path={mdiAccount}></map-icon>
 </template>

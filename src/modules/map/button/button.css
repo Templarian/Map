@@ -9,3 +9,7 @@ button {
 button:hover {
   border-color: #BBB;
 }
+
+:host map-icon {
+  vertical-align: middle;
+}
