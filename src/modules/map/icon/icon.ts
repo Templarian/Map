@@ -2,7 +2,7 @@ import { LightningElement, api } from 'lwc';
 
 interface Slot {
   component: string,
-  slot: string,
+  name: string | null,
   variant: string | null
 }
 
@@ -23,7 +23,13 @@ export default class Tile extends LightningElement {
   }
 
   slot({ target, detail: slot }: CustomEvent<Slot>) {
-    (target as Element).className = `${slot.component}-slot-${slot.slot}-${slot.variant}`;
+    const iconElement = target as Element;
+    const slotName = slot.name ? `-${slot.name}` : '';
+    const classes = [
+      `${slot.component}-slot${slotName}`,
+      `${slot.component}-slot${slotName}-${slot.variant}`
+    ];
+    iconElement.className = classes.join(' ');
   }
 
 }

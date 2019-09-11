@@ -9,7 +9,7 @@ export default class App extends LightningElement {
     @track tile: any = { complex: 'object' };
     @track tileId: any = null;
     @track world: World | null = null;
-    @track mdiAccount: string = 'M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z';
+    @track mdiMessageText: string = 'M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18';
 
     @wire(getMap, { id: '$tileId' })
     function({ error, data }: any) {

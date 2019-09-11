@@ -4,17 +4,30 @@
   height: 1.5rem;
 }
 
-svg path {
+svg {
   fill: #444;
 }
 
 /* Style in Slot */
-:host(.button-slot-left-default) {
+/* - Button */
+:host(.button-slot) {
+  vertical-align: middle;
+  margin: -0.35rem 0 -0.25rem 0;
+}
+
+:host(.button-slot-left) {
   vertical-align: middle;
   margin: -0.35rem 0.25rem -0.25rem -0.25rem;
 }
 
-:host(.button-slot-right-default) {
+:host(.button-slot-right) {
   vertical-align: middle;
   margin: -0.35rem -0.25rem -0.25rem 0.25rem;
 }
+
+:host(.button-slot-primary) svg,
+:host(.button-slot-left-primary) svg,
+:host(.button-slot-right-primary) svg {
+  fill: #FFF;
+}
+/* - Button Group */

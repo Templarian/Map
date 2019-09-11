@@ -19,7 +19,22 @@ export default class Button extends LightningElement {
       element.dispatchEvent(new CustomEvent('slot', {
         detail: {
           component: 'button',
-          slot: 'left',
+          name: 'left',
+          variant: this.variant
+        }
+      }));
+    });
+  }
+
+  handleSlotChange(e: Event) {
+    const button = this.template.childNodes[1];
+    const slot = button.childNodes[1] as HTMLSlotElement;
+    const slotElements = slot.assignedElements();
+    slotElements.forEach(element => {
+      element.dispatchEvent(new CustomEvent('slot', {
+        detail: {
+          component: 'button',
+          name: null,
           variant: this.variant
         }
       }));
@@ -34,7 +49,7 @@ export default class Button extends LightningElement {
       element.dispatchEvent(new CustomEvent('slot', {
         detail: {
           component: 'button',
-          slot: 'right',
+          name: 'right',
           variant: this.variant
         }
       }));
