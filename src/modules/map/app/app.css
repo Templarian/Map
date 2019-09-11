@@ -34,3 +34,7 @@ img {
 .greeting {
     height: 75px;
 }
+
+section {
+    padding: 1rem;
+}

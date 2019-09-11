@@ -1,5 +1,11 @@
 import { LightningElement, api } from 'lwc';
 
+interface Slot {
+  component: string,
+  name: string | null,
+  variant: string | null
+}
+
 export default class Button extends LightningElement {
   @api variant: string = 'default';
 
@@ -9,6 +15,20 @@ export default class Button extends LightningElement {
 
   get computedClass() {
     return `variant-${this.variant}`;
+  }
+
+  connectedCallback() {
+    this.addEventListener('slot', this.slot as EventListener);
+  }
+
+  slot({ target, detail: slot }: CustomEvent<Slot>) {
+    const iconElement = target as Element;
+    const slotName = slot.name ? `-${slot.name}` : '';
+    const classes = [
+      `${slot.component}-slot${slotName}`,
+      `${slot.component}-slot${slotName}-${slot.variant}`
+    ];
+    iconElement.className = classes.join(' ');
   }
 
   handleLeftSlotChange(e: Event) {

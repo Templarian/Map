@@ -1,3 +1,7 @@
+:host {
+  display: inline-block;
+}
+
 button {
   border: 1px solid #DDD;
   border-radius: 0.25rem;
@@ -14,4 +18,21 @@ button.variant-primary {
   border-color: #007bff;
   background-color: #007bff;
   color: #FFF;
+}
+
+button.variant-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+:host(.buttonGroup-slot:first-child) button {
+  border-radius: 0.25rem 0 0 0.25rem;
+  margin-right: -1px;
+}
+:host(.buttonGroup-slot:last-child) button {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+:host(.buttonGroup-slot) button:hover {
+  position: relative;
+  z-index: 1;
 }

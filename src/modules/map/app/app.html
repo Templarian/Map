@@ -1,20 +1,33 @@
 <template>
     <map-toast></map-toast>
-    <map-button onclick={fireToast}>
-        <map-icon slot="left" path={mdiMessageText}></map-icon>
-        Fire Toast
-    </map-button>
-    <map-button variant="primary" onclick={fireToast3}>
-        <map-icon slot="left" path={mdiMessageText}></map-icon>
-        Fire Toast 3 Seconds
-    </map-button>
-    <map-button variant="primary" onclick={fireToast3}>
-        <map-icon path={mdiMessageText}></map-icon>
-    </map-button>
-    <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
-    <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
-    <map-button onclick={loadMap}>Load Map</map-button>
-    <map-button onclick={loadMap2}>Load Error</map-button>
+    <section>
+        <h2>Buttons</h2>
+        <map-button onclick={fireToast}>
+            <map-icon slot="left" path={mdiMessageText}></map-icon>
+            Fire Toast
+        </map-button>
+        <map-button variant="primary" onclick={fireToast3}>
+            <map-icon slot="left" path={mdiMessageText}></map-icon>
+            Fire Toast 3 Seconds
+        </map-button>
+        <map-button variant="primary" onclick={fireToast3}>
+            <map-icon path={mdiMessageText}></map-icon>
+        </map-button>
+        <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
+        <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
+    </section>
+    <section>
+        <h2>Button Group</h2>
+        <map-button-group>
+            <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
+            <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
+        </map-button-group>
+    </section>
+    <section>
+        <h2>Load Map</h2>
+        <map-button onclick={loadMap}>Load Map</map-button>
+        <map-button onclick={loadMap2}>Load Error</map-button>
+    </section>
     <map-world>
         <map-tile tile={tile} tile-id={tileId}></map-tile>
     </map-world>
