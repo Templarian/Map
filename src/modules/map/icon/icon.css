@@ -7,3 +7,14 @@
 svg path {
   fill: #444;
 }
+
+/* Style in Slot */
+:host(.button-slot-left-default) {
+  vertical-align: middle;
+  margin: -0.35rem 0.25rem -0.25rem -0.25rem;
+}
+
+:host(.button-slot-right-default) {
+  vertical-align: middle;
+  margin: -0.35rem -0.25rem -0.25rem 0.25rem;
+}

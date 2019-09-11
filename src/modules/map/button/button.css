@@ -2,7 +2,7 @@ button {
   border: 1px solid #DDD;
   border-radius: 0.25rem;
   background: #EEE;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0.45rem 0.5rem;
   color: #222;
 }
 
@@ -10,6 +10,8 @@ button:hover {
   border-color: #BBB;
 }
 
-:host map-icon {
-  vertical-align: middle;
+button.variant-primary {
+  border-color: #007bff;
+  background-color: #007bff;
+  color: #FFF;
 }

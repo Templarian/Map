@@ -3,23 +3,24 @@ import { removeToast } from 'services/toastService';
 
 export default class ToastItem extends LightningElement {
 
-    @api
-    toast: any;
+  @api
+  toast: any;
 
-    get computedClass() {
-        var cls = [`variant-${this.toast.variant}`];
-        if (this.toast.seconds > 0) {
-            cls.push(`seconds-${this.toast.seconds}`);
-        }
-        return cls.join(' ');
+  get computedClass() {
+    var cls = [`variant-${this.toast.variant}`];
+    if (this.toast.seconds > 0) {
+      cls.push(`seconds-${this.toast.seconds}`);
     }
+    return cls.join(' ');
+  }
 
-    get dismissable() {
-        return this.toast.dismissable;
-    }
+  get dismissable() {
+    return this.toast.dismissable;
+  }
 
-    handleClick(e: any) {
-        removeToast(e.target.dataset.id);
-    }
+  handleClick(e: any) {
+    const id = parseInt(e.target.dataset.id);
+    removeToast(id);
+  }
 
 }

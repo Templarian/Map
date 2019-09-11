@@ -1,7 +1,7 @@
 <template>
-  <button onclick={handleClick}>
-    <slot name="left"></slot>
+  <button onclick={handleClick} class={computedClass}>
+    <slot name="left" onslotchange={handleLeftSlotChange}></slot>
     <slot></slot>
-    <slot name="right"></slot>
+    <slot name="right" onslotchange={handleRightSlotChange}></slot>
   </button>
 </template>
