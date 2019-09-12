@@ -1,7 +1,9 @@
 <template>
     <map-world>
         <template if:true={world}>
-            <map-tile tile={tile} tile-id={tileId}></map-tile>
+            <template for:each={world.tiles} for:item="tile">
+                <map-tile key={tile.tileId} tile={tile}></map-tile>
+            </template>
         </template>
     </map-world>
     <template if:false={world}>

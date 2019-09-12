@@ -5,6 +5,7 @@
 }
 
 button {
+  position: relative;
   padding: 0;
   width: 4rem;
   height: 4rem;
@@ -23,4 +24,10 @@ button:hover {
   border-radius: 4px;
   width: 4.5rem;
   height: 4.5rem;
+}
+
+button img {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

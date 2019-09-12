@@ -12,7 +12,7 @@ export default class Tile extends LightningElement {
         return this._tile;
     }
     set tile(tile){
-        console.log(tile.complex);
+        console.log(tile);
         this._tile = tile;
     }
 
