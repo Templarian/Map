@@ -1,3 +1,8 @@
+:host {
+    display: block;
+    height: 100%;
+}
+
 .link {
     border: none;
     padding: 10px;
@@ -37,4 +42,13 @@ img {
 
 section {
     padding: 1rem;
+    margin: 1rem;
+    background: #FFF;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+    margin: 0 0 0.5rem 0;
+    font-weight: normal;
 }

@@ -1,4 +1,19 @@
 <template>
+    <map-world>
+        <template if:true={world}>
+            <map-tile tile={tile} tile-id={tileId}></map-tile>
+        </template>
+    </map-world>
+    <template if:false={world}>
+        <map-modal>
+            <h1>Load Map</h1>
+            <p>Select Map Modal Here</p>
+            <map-button onclick={loadMap}>
+                <map-icon slot="left" path={mdiScript}></map-icon>
+                Load Mock Map
+            </map-button>
+        </map-modal>
+    </template>
     <map-toast></map-toast>
     <section>
         <h2>Buttons</h2>
@@ -13,8 +28,6 @@
         <map-button variant="primary" onclick={fireToast3}>
             <map-icon path={mdiMessageText}></map-icon>
         </map-button>
-        <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
-        <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
     </section>
     <section>
         <h2>Button Group</h2>
@@ -25,13 +38,15 @@
     </section>
     <section>
         <h2>Load Map</h2>
-        <map-button onclick={loadMap}>Load Map</map-button>
-        <map-button onclick={loadMap2}>Load Error</map-button>
+        <map-button onclick={loadMap}>
+            <map-icon slot="left" path={mdiScript}></map-icon>
+            Load Mock Map
+        </map-button>
+        <map-button onclick={loadMap2}>Load Mock Error</map-button>
     </section>
-    <map-world>
-        <map-tile tile={tile} tile-id={tileId}></map-tile>
-    </map-world>
     <map-details name="Foo"></map-details>
-    {data}
-    <map-icon path={mdiMessageText}></map-icon>
+    <section>
+        <h2>Map Data</h2>
+        {data}
+    </section>
 </template>

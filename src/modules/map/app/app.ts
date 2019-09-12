@@ -10,6 +10,7 @@ export default class App extends LightningElement {
     @track tileId: any = null;
     @track world: World | null = null;
     @track mdiMessageText: string = 'M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M6,9H18V11H6M14,14H6V12H14M18,8H6V6H18';
+    @track mdiScript: string = 'M17.8,20C17.4,21.2 16.3,22 15,22H5C3.3,22 2,20.7 2,19V18H5L14.2,18C14.6,19.2 15.7,20 17,20H17.8M19,2H8C6.3,2 5,3.3 5,5V16H16V17C16,17.6 16.4,18 17,18H18V5C18,4.4 18.4,4 19,4C19.6,4 20,4.4 20,5V6H22V5C22,3.3 20.7,2 19,2Z';
 
     @wire(getMap, { id: '$tileId' })
     function({ error, data }: any) {
