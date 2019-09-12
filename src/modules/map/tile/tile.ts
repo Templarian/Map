@@ -1,22 +1,19 @@
 import { LightningElement, track, api } from 'lwc';
+import TileCls from 'models/tile';
 
 export default class Tile extends LightningElement {
     @track isLoading: boolean = true;
 
-    _tile: any = null;
+    @api tile: TileCls = new TileCls();
 
-    @api tileId: any;
-
-    @api
-    get tile() {
-        return this._tile;
-    }
-    set tile(tile){
-        console.log(tile);
-        this._tile = tile;
+    renderedCallback() {
+        const [x, y] = this.tile.coordinate || [0, 0];
+        const ele = this.template.host as HTMLElement;
+        ele.style.left = `${4 * x}rem`;
+        ele.style.top = `${4 * y}rem`;
     }
 
     handleClick() {
-        console.log('edit');
+        console.log(this.tile);
     }
 }

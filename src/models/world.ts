@@ -1,6 +1,5 @@
 import Tile from "./tile";
 import Layer from "./layer";
-import Collision from "./collision";
 
 export default class World {
   public id: string = '';
