@@ -1,0 +1,24 @@
+:host {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+button {
+  padding: 0;
+  width: 4rem;
+  height: 4rem;
+  outline: none;
+  background: rgba(0, 0, 100, 0.1);
+  background-clip: content-box;
+  cursor: inherit;
+  color: rgba(0, 0, 100, 0.2);
+  border: 0;
+}
+
+button:hover {
+  border-color: #FFF;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2) inset;
+  background: rgba(0, 0, 100, 0.15);
+  color: rgba(0, 0, 100, 0.3);
+}

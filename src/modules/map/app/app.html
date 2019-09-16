@@ -1,8 +1,11 @@
 <template>
-    <map-world>
+    <map-world world={world}>
         <template if:true={world}>
             <template for:each={world.tiles} for:item="tile">
                 <map-tile key={tile.tileId} tile={tile}></map-tile>
+            </template>
+            <template for:each={world.addTiles} for:item="tile">
+                <map-add-tile key={tile.id} tile={tile}></map-add-tile>
             </template>
         </template>
     </map-world>
@@ -48,7 +51,9 @@
     </section>
     <map-details name="Foo"></map-details>
     <section>
-        <h2>Map Data</h2>
+        <h2>
+            Map Data ({tileCount})
+        </h2>
         {data}
     </section>
 </template>

@@ -1,6 +1,8 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
+import WorldModel from 'models/world';
 
 export default class World extends LightningElement {
+  @api world: WorldModel | null = null;
 
   renderedCallback() {
     window.addEventListener('resize', this.resize.bind(this));

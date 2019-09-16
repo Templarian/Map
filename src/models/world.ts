@@ -1,25 +1,62 @@
 import Tile from "./tile";
 import Layer from "./layer";
 
+type Coordinate = [number, number];
+type AddTile = {
+  id: number,
+  coordinate: Coordinate
+}
+
 export default class World {
   public id: string = '';
   public name: string = '';
   public description: string = '';
   public author: string = '';
   public tiles: Tile[] = [];
-  public tileCount: number = 0;
+  private $tileCount: number = 0;
+  public get tileCount() {
+    return this.$tileCount || this.tiles.length;
+  }
+  public set tileCount(tileCount: number) {
+    this.$tileCount = tileCount;
+  }
 
-  public from(world: World) {
+  public get addTiles(): AddTile[] {
+    const addTiles: Coordinate[] = [];
+    this.iterateTiles(this.tiles[0], (tile: Tile, coordinate: Coordinate) => {
+      tile.sides((side, i) => {
+        if (side === null) {
+          const sideCoordinate = this.getSideCoordinate(coordinate, i);
+          addTiles.push(sideCoordinate);
+        }
+      });
+    });
+    const test = addTiles
+      .filter(this.uniqueCoordinates)
+      .map((coordinate, id) => ({ id, coordinate }));
+    return test;
+  }
+
+  private uniqueCoordinates(v: Coordinate, i: number, a: Coordinate[]) {
+    return a.findIndex(c => c[0] === v[0] && c[1] === v[1]) === i
+  }
+
+  public from(world: World | null) {
+    if (world === null) {
+      return this;
+    }
     this.name = world.name;
     this.description = world.description;
     this.author = world.author;
     if (world.tiles) {
       this.tiles = world.tiles.map(tile => new Tile().from(tile));
-      this.iterateTiles(this.tiles[0], (tile: Tile, [x, y]: [number, number]) => {
+      this.iterateTiles(this.tiles[0], (tile: Tile, [x, y]: Coordinate) => {
         tile.setCoordinate(x, y);
       });
     }
-    this.tileCount = world.tileCount;
+    if (world.tileCount) {
+      this.tileCount = world.tileCount;
+    }
     return this;
   }
 
@@ -36,7 +73,7 @@ export default class World {
     ];
   }
 
-  private getSideCoordinate([x, y]: [number, number], index: number): [number, number] {
+  private getSideCoordinate([x, y]: Coordinate, index: number): Coordinate {
     switch (index) {
       case 0:
         return [x, y - 1];
@@ -66,10 +103,11 @@ export default class World {
     });
   }
 
-  public addTile(x: number, y: number, layers: Layer[]) {
+  public addTile(x: number, y: number, layers: Layer[] | null) {
     var sides = this.getSidesByCoordinate(x, y);
     var uuid = this.uuidv4();
     const tile = new Tile();
+    tile.setCoordinate(x, y);
     const s = [...sides.map(s => s ? s.id[0] : null)];
     tile.id = [uuid, s[0], s[1], s[2], s[3]];
     tile.layers = layers || [new Layer().from('paper-tan'), new Layer().from('tile-lines-1')];
@@ -105,8 +143,8 @@ export default class World {
     return counts.every(c => c === this.tiles.length - 1);
   }
 
-  public iterateTiles(startTile: Tile, callback: Function, ignoreTiles: Tile[] = []) {
-    const iterate = (tiles: Tile[], tile: Tile, [x, y]: [number, number]) => {
+  private iterateTiles(startTile: Tile, callback: Function, ignoreTiles: Tile[] = []) {
+    const iterate = (tiles: Tile[], tile: Tile, [x, y]: Coordinate) => {
       tiles.splice(tiles.findIndex(t => t.id[0] === tile.id[0]), 1)[0];
       callback(tile, [x, y]);
       var [, top, right, bottom, left] = tile.id;

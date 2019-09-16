@@ -16,4 +16,9 @@ export default class Tile extends LightningElement {
     handleClick() {
         console.log(this.tile);
     }
+
+    handleDelete() {
+        alert('delete');
+        console.log('testing');
+    }
 }

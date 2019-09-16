@@ -1,8 +1,15 @@
 <template>
-    <button class={computedClass}
-        onclick={handleClick}>
-        <template for:each={tile.layers} for:item="layer">
-            <img key={layer.id} src={layer.src}></img>
-        </template>
-    </button>
+    <map-context-menu>
+        <button class={computedClass}
+            onclick={handleClick}>
+            <template for:each={tile.layers} for:item="layer">
+                <img key={layer.id} src={layer.src}></img>
+            </template>
+        </button>
+        <map-menu slot="menu">
+            <map-menu-item onclick={handleDelete}>Delete</map-menu-item>
+            <map-menu-item>Fake Option 1</map-menu-item>
+            <map-menu-item>Fake Option 2</map-menu-item>
+        </map-menu>
+    </map-context-menu>
 </template>
