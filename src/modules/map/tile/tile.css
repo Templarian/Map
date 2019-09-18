@@ -1,11 +1,16 @@
 :host {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  grid-column: var(--column, 1);
+  grid-row: var(--row, 1);
+  order: 0;
 }
-
+:host(:hover) {
+  order: 1;
+}
 button {
-  position: relative;
+  display: flex;
   padding: 0;
   width: 4.5rem;
   height: 4.5rem;
@@ -19,14 +24,19 @@ button {
 
 button:hover {
   border-color: #FFF;
-  position: relative;
-  z-index: 1;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
   border-radius: 4px;
 }
 
-button img {
-  position: absolute;
-  top: 0;
-  left: 0;
+button img + img {
+  margin-left: -4rem;
+}
+
+button span {
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  margin-left: -4rem;
+  align-items: center;
+  justify-content: center;
 }

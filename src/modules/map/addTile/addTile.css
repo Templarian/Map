@@ -1,7 +1,9 @@
 :host {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  grid-column: var(--column, 1);
+  grid-row: var(--row, 1);
 }
 
 button {

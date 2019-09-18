@@ -1,11 +1,8 @@
+import AddTile from './addTile';
 import Tile from "./tile";
 import Layer from "./layer";
 
 type Coordinate = [number, number];
-type AddTile = {
-  id: number,
-  coordinate: Coordinate
-}
 
 export default class World {
   public id: string = '';
@@ -20,8 +17,14 @@ export default class World {
   public set tileCount(tileCount: number) {
     this.$tileCount = tileCount;
   }
+  public get hash() {
+    return `${this.width}, ${this.height}`;
+  }
 
   public get addTiles(): AddTile[] {
+    if (this.tiles.length === 0) {
+      return [];
+    }
     const addTiles: Coordinate[] = [];
     this.iterateTiles(this.tiles[0], (tile: Tile, coordinate: Coordinate) => {
       tile.sides((side, i) => {
@@ -31,14 +34,58 @@ export default class World {
         }
       });
     });
-    const test = addTiles
+    const [offsetX, offsetY] = this.gridOffset;
+    return addTiles
       .filter(this.uniqueCoordinates)
-      .map((coordinate, id) => ({ id, coordinate }));
-    return test;
+      .map((coordinate, id) => {
+        const addTile = new AddTile();
+        addTile.id = id;
+        addTile.coordinate = coordinate;
+        addTile.gridCoordinate = [
+          coordinate[0] + offsetX,
+          coordinate[1] + offsetY
+        ];
+        return addTile;
+      });
   }
 
   private uniqueCoordinates(v: Coordinate, i: number, a: Coordinate[]) {
     return a.findIndex(c => c[0] === v[0] && c[1] === v[1]) === i
+  }
+
+  private min(arr: number[]) {
+    return arr.reduce(function(a, b) {
+      return Math.min(a, b);
+    });
+  }
+
+  private max(arr: number[]) {
+    return arr.reduce(function(a, b) {
+      return Math.max(a, b);
+    });
+  }
+
+  private get gridOffset() {
+    return [
+      Math.abs(this.min(this.tiles.map(tile => tile.x))) + 3,
+      Math.abs(this.min(this.tiles.map(tile => tile.y))) + 3
+    ]
+  }
+
+  public get width() {
+    if (this.tiles.length === 0) {
+      return 3;
+    }
+    return this.max(this.tiles.map(tile => tile.x))
+      - this.min(this.tiles.map(tile => tile.x)) + 3;
+  }
+
+  public get height() {
+    if (this.tiles.length === 0) {
+      return 3;
+    }
+    return this.max(this.tiles.map(tile => tile.y))
+      - this.min(this.tiles.map(tile => tile.y)) + 3;
   }
 
   public from(world: World | null) {
@@ -52,6 +99,10 @@ export default class World {
       this.tiles = world.tiles.map(tile => new Tile().from(tile));
       this.iterateTiles(this.tiles[0], (tile: Tile, [x, y]: Coordinate) => {
         tile.setCoordinate(x, y);
+      });
+      const [offsetX, offsetY] = this.gridOffset;
+      this.tiles.forEach(tile => {
+        tile.setGridOffset(offsetX, offsetY);
       });
     }
     if (world.tileCount) {
@@ -116,6 +167,9 @@ export default class World {
     if (sides[1]) { sides[1].id[4] = uuid; }
     if (sides[2]) { sides[2].id[1] = uuid; }
     if (sides[3]) { sides[3].id[2] = uuid; }
+    // Update Grid Offsets
+    const [offsetX, offsetY] = this.gridOffset;
+    this.tiles.forEach(tile => tile.setGridOffset(offsetX, offsetY));
   }
 
   public removeTile(tile: Tile) {

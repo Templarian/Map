@@ -1,12 +1,13 @@
 import { ReferenceObject } from 'popper.js';
 
-function getCursor(e: MouseEvent): ReferenceObject {
+function getPosition(e: MouseEvent): ReferenceObject {
+  console.log(e.clientX, e.clientY);
+  const x = e.clientX;
+  const y = e.clientY;
   return {
     clientWidth: 0,
     clientHeight: 0,
     getBoundingClientRect(): ClientRect {
-      const x = e.clientX;
-      const y = e.clientY;
       return {
         width: 0,
         height: 0,
@@ -19,4 +20,4 @@ function getCursor(e: MouseEvent): ReferenceObject {
   };
 }
 
-export { getCursor };
+export { getPosition };

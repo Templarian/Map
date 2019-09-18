@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 
-export default class addTile extends LightningElement {
+export default class AddTile extends LightningElement {
   @api tile: any = null;
 
   get x() {
@@ -16,10 +16,10 @@ export default class addTile extends LightningElement {
   }
 
   renderedCallback() {
-    const [x, y] = this.tile.coordinate || [0, 0];
+    const [x, y] = this.tile.gridCoordinate || [0, 0];
     const ele = this.template.host as HTMLElement;
-    ele.style.left = `${4 * x}rem`;
-    ele.style.top = `${4 * y}rem`;
+    ele.style.setProperty('--column', x);
+    ele.style.setProperty('--row', y);
   }
 
   handleClick() {

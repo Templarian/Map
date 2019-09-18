@@ -5,6 +5,7 @@
             <template for:each={tile.layers} for:item="layer">
                 <img key={layer.id} src={layer.src}></img>
             </template>
+            <span>{hash}</span>
         </button>
         <map-menu slot="menu">
             <map-menu-item onclick={handleDelete}>Delete</map-menu-item>

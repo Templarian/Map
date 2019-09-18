@@ -17,13 +17,49 @@ export default class Tile {
   public collision: Collision = Collision.None;
   public layers: Layer[] = [];
 
-  private $coordinate: [number, number] | null = null;
+  public get hash() {
+    return `${this.gridX}, ${this.gridY}`
+  }
+
+  private $coordinate: [number, number] = [0, 0];
   public get coordinate() {
     return this.$coordinate;
   }
 
   public setCoordinate(x: number, y: number) {
     this.$coordinate = [x, y];
+  }
+
+  get x() {
+    return this.coordinate![0];
+  }
+
+  get y() {
+    return this.coordinate![1];
+  }
+
+  private $gridOffset: [number, number] = [0, 0];
+  public get gridOffset() {
+    return this.$gridOffset;
+  }
+
+  public get gridCoordinate() {
+    return [
+      this.$coordinate[0] + this.$gridOffset[0],
+      this.$coordinate[1] + this.$gridOffset[1]
+    ];
+  }
+
+  get gridX() {
+    return this.$coordinate[0] + this.$gridOffset[0] + 1;
+  }
+
+  get gridY() {
+    return this.$coordinate[1] + this.$gridOffset[1] + 1;
+  }
+
+  public setGridOffset(x: number, y: number) {
+    this.$gridOffset = [x, y];
   }
 
   public sides(cb: ISideCallback) {
@@ -49,14 +85,6 @@ export default class Tile {
 
   get leftId() {
     return this.id[4];
-  }
-
-  get x() {
-    return this.coordinate![0];
-  }
-
-  get y() {
-    return this.coordinate![1];
   }
 
   from(tile: Tile) {

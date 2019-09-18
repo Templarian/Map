@@ -1,15 +1,13 @@
 <template>
-    <map-world world={world}>
-        <template if:true={world}>
-            <template for:each={world.tiles} for:item="tile">
-                <map-tile key={tile.tileId} tile={tile}></map-tile>
-            </template>
-            <template for:each={world.addTiles} for:item="tile">
-                <map-add-tile key={tile.id} tile={tile}></map-add-tile>
-            </template>
+    <map-world world={world} hash={world.hash}>
+        <template for:each={world.tiles} for:item="tile">
+            <map-tile key={tile.tileId} tile={tile} hash={tile.hash}></map-tile>
+        </template>
+        <template for:each={world.addTiles} for:item="tile">
+            <map-add-tile key={tile.id} tile={tile}></map-add-tile>
         </template>
     </map-world>
-    <template if:false={world}>
+    <template if:false={tileId}>
         <map-modal>
             <h1>Load Map</h1>
             <p>Select Map Modal Here</p>
@@ -40,6 +38,20 @@
             <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
             <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
         </map-button-group>
+    </section>
+    <section>
+        <h2>Context Menu</h2>
+        <p>Right click the button below.</p>
+        <map-context-menu>
+            <button>
+                Right Click Me
+            </button>
+            <map-menu slot="menu">
+                <map-menu-item>Fake Option 1</map-menu-item>
+                <map-menu-item>Fake Option 2</map-menu-item>
+                <map-menu-item>Fake Option 3</map-menu-item>
+            </map-menu>
+        </map-context-menu>
     </section>
     <section>
         <h2>Load Map</h2>

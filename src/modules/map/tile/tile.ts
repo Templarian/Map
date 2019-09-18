@@ -5,12 +5,21 @@ export default class Tile extends LightningElement {
     @track isLoading: boolean = true;
 
     @api tile: TileCls = new TileCls();
+    @api hash: string = '';
+
+    get x() {
+        return this.tile.coordinate[0];
+    }
+
+    get y() {
+        return this.tile.coordinate[1];
+    }
 
     renderedCallback() {
-        const [x, y] = this.tile.coordinate || [0, 0];
+        const [x, y] = this.tile.gridCoordinate || [0, 0];
         const ele = this.template.host as HTMLElement;
-        ele.style.left = `${4 * x}rem`;
-        ele.style.top = `${4 * y}rem`;
+        ele.style.setProperty('--column', `${x}`);
+        ele.style.setProperty('--row', `${y}`);
     }
 
     handleClick() {

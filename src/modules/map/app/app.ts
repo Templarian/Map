@@ -9,7 +9,7 @@ export default class App extends LightningElement {
   @track tile: any = { complex: 'object' };
   @track tileId: any = null;
   @track tileCount: number = 0;
-  @track world: World | null = null;
+  @track world: World = new World();
   @track mdiAccount: string = mdiAccount;
   @track mdiMessageText: string = mdiMessageText;
   @track mdiScript: string = mdiScript;
@@ -22,7 +22,7 @@ export default class App extends LightningElement {
       removeToast(this.loadingToastId);
     }
     if (error) {
-      this.world = null;
+      this.world = new World();
       this.tileId = null;
       addErrorToast('Failed to load map!', 5000);
       removeToast(this.loadingToastId);
@@ -37,7 +37,6 @@ export default class App extends LightningElement {
     const { x, y } = e.detail;
     this.world!.addTile(x, y, null);
     this.tileCount = this.world!.tileCount;
-    console.log(this.tileCount, x, y);
   }
 
   get data() {
