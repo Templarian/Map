@@ -6,7 +6,7 @@ Tile editor for a hand drawn paper look.
 
 ## View Tile Editor
 
-https://templarian.github.io/tile/
+https://templarian.github.io/map/
 
 ## Tech Stack
 
