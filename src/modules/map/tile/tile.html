@@ -9,8 +9,19 @@
         </button>
         <map-menu slot="menu">
             <map-menu-item onclick={handleDelete}>Delete</map-menu-item>
-            <map-menu-item>Fake Option 1</map-menu-item>
-            <map-menu-item>Fake Option 2</map-menu-item>
+            <map-menu-separator></map-menu-separator>
+            <map-menu-item if:true={tile.comment} onclick={handleComment}>
+                Delete Comment
+            </map-menu-item>
         </map-menu>
     </map-context-menu>
+    <map-modal if:true={openDeleteComment}>
+        <map-modal-body>
+            <p>Are you sure you want to clear the comment?</p>
+        </map-modal-body>
+        <map-modal-footer>
+            <map-button onclick={cancelDeleteComment}>Cancel</map-button>
+            <map-button onclick={confirmDeleteComment} variant="primary">Delete</map-button>
+        </map-modal-footer>
+    </map-modal>
 </template>

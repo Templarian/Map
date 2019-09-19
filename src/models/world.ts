@@ -72,6 +72,22 @@ export default class World {
     ]
   }
 
+  public get minX() {
+    return this.min(this.tiles.map(tile => tile.x));
+  }
+
+  public get maxX() {
+    return this.max(this.tiles.map(tile => tile.x));
+  }
+
+  public get minY() {
+    return this.min(this.tiles.map(tile => tile.y));
+  }
+
+  public get maxY() {
+    return this.max(this.tiles.map(tile => tile.y));
+  }
+
   public get width() {
     if (this.tiles.length === 0) {
       return 3;

@@ -1,12 +1,13 @@
 :host {
   display: grid;
-  grid-template-columns: var(--offset-x, 0px) repeat(var(--grid-width, 3), 4rem);
-  grid-template-rows: var(--offset-y, 0px) repeat(var(--grid-height, 3), 4rem);
+  grid-template-columns: var(--grid-offset-x, 0px) repeat(var(--grid-width, 3), 4rem);
+  grid-template-rows: var(--grid-offset-y, 0px) repeat(var(--grid-height, 3), 4rem);
   overflow: hidden;
   height: 100vh;
   background-color: #FFF;
   background-image: url('resources/tiles/paper-dots.svg');
   background-repeat: repeat;
+  background-position: var(--offset-x, 0) var(--offset-y, 0);
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
   justify-items: end;
   align-items: end;

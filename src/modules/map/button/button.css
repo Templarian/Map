@@ -36,3 +36,7 @@ button.variant-primary:hover {
   position: relative;
   z-index: 1;
 }
+
+:host(.modalFooter-slot:not(:first-child)) button {
+  margin-left: 0.5rem;
+}

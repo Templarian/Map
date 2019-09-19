@@ -30,4 +30,18 @@ export default class Tile extends LightningElement {
         alert('delete');
         console.log('testing');
     }
+
+    @track openDeleteComment = false;
+    handleComment() {
+        this.openDeleteComment = true;
+    }
+
+    cancelDeleteComment() {
+        this.openDeleteComment = false;
+    }
+
+    confirmDeleteComment() {
+        this.tile.comment = '';
+        this.openDeleteComment = false;
+    }
 }
