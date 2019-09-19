@@ -93,4 +93,12 @@ export default class Tile {
     this.layers = tile.layers.map(layer => new Layer().from(layer));
     return this;
   }
+
+  json() {
+    return {
+      id: this.id,
+      comment: this.comment || null,
+      layers: this.layers.map(layer => layer.id)
+    }
+  }
 }

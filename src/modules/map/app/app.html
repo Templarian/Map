@@ -24,10 +24,12 @@
             <map-icon slot="left" path={mdiMessageText}></map-icon>
             Fire Toast
         </map-button>
+        &nbsp;
         <map-button variant="primary" onclick={fireToast3}>
             <map-icon slot="left" path={mdiMessageText}></map-icon>
             Fire Toast 3 Seconds
         </map-button>
+        &nbsp;
         <map-button variant="primary" onclick={fireToast3}>
             <map-icon path={mdiMessageText}></map-icon>
         </map-button>
@@ -38,6 +40,28 @@
             <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
             <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
         </map-button-group>
+    </section>
+    <section>
+        <h2>Button Menu</h2>
+        <map-dropdown>
+            <map-button>
+                Menu
+            </map-button>
+            <map-menu slot="menu">
+                <map-menu-item>Option 1</map-menu-item>
+                <map-menu-item>Option 2</map-menu-item>
+            </map-menu>
+        </map-dropdown>
+        &nbsp;
+        <map-dropdown>
+            <map-button variant="primary">
+                <map-icon path={mdiMessageText}></map-icon>
+            </map-button>
+            <map-menu slot="menu">
+                <map-menu-item>Option 1</map-menu-item>
+                <map-menu-item>Option 2</map-menu-item>
+            </map-menu>
+        </map-dropdown>
     </section>
     <section>
         <h2>Context Menu</h2>

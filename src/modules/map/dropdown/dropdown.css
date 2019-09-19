@@ -1,0 +1,11 @@
+:host {
+  display: inline-block;
+}
+
+.opened {
+  display: block;
+}
+
+.closed {
+  display: inline-block;
+}

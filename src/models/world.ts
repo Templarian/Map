@@ -67,8 +67,8 @@ export default class World {
 
   private get gridOffset() {
     return [
-      Math.abs(this.min(this.tiles.map(tile => tile.x))) + 3,
-      Math.abs(this.min(this.tiles.map(tile => tile.y))) + 3
+      Math.abs(this.min(this.tiles.map(tile => tile.x))) + 2,
+      Math.abs(this.min(this.tiles.map(tile => tile.y))) + 2
     ]
   }
 
@@ -93,7 +93,7 @@ export default class World {
       return 3;
     }
     return this.max(this.tiles.map(tile => tile.x))
-      - this.min(this.tiles.map(tile => tile.x)) + 3;
+      - this.min(this.tiles.map(tile => tile.x)) + 2;
   }
 
   public get height() {
@@ -101,13 +101,14 @@ export default class World {
       return 3;
     }
     return this.max(this.tiles.map(tile => tile.y))
-      - this.min(this.tiles.map(tile => tile.y)) + 3;
+      - this.min(this.tiles.map(tile => tile.y)) + 2;
   }
 
   public from(world: World | null) {
     if (world === null) {
       return this;
     }
+    this.id = world.id;
     this.name = world.name;
     this.description = world.description;
     this.author = world.author;
@@ -125,6 +126,16 @@ export default class World {
       this.tileCount = world.tileCount;
     }
     return this;
+  }
+
+  public json() {
+    return {
+      id: this.id,
+      name: this.name,
+      description: this.description,
+      author: this.author,
+      tiles: this.tiles.map(tile => tile.json())
+    };
   }
 
   private getTile(x: number, y: number): Tile | null {

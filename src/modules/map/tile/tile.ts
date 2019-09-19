@@ -1,5 +1,6 @@
 import { LightningElement, track, api } from 'lwc';
 import TileCls from 'models/tile';
+import { addToast } from 'services/toastService';
 
 export default class Tile extends LightningElement {
     @track isLoading: boolean = true;
@@ -43,5 +44,6 @@ export default class Tile extends LightningElement {
     confirmDeleteComment() {
         this.tile.comment = '';
         this.openDeleteComment = false;
+        addToast('Deleted Comment', 3);
     }
 }

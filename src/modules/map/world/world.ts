@@ -87,15 +87,33 @@ export default class World extends LightningElement {
   }
 
   updateOffset(deltaX: number, deltaY: number) {
+    const host = this.template.host;
+    const size = host.getBoundingClientRect();
+    const { width, height } = this.$world as WorldModel;
     this.offsetX += deltaX;
     this.offsetY += deltaY;
-    const x = Math.floor(this.offsetX % 64);
-    const y = Math.floor(this.offsetY % 64);
-    const host = this.template.host;
+    let offsetX = this.offsetX;
+    if (offsetX < 0) {
+      if (width * 64 > size.width) {
+        offsetX = 64 - Math.abs(offsetX % 64);
+      } else {
+        this.offsetX = offsetX = 0;
+      }
+    }
+    let offsetY = this.offsetY;
+    if (offsetY < 0) {
+      if (height * 64 > size.height) {
+        offsetY = 64 - Math.abs(offsetY % 64);
+      } else {
+        this.offsetY = offsetY = 0;
+      }
+    }
+    const x = Math.floor(offsetX % 64);
+    const y = Math.floor(offsetY % 64);
     host.style.setProperty('--offset-x', `${x}px`);
     host.style.setProperty('--offset-y', `${y}px`);
-    host.style.setProperty('--grid-offset-x', `${this.offsetX}px`);
-    host.style.setProperty('--grid-offset-y', `${this.offsetY}px`);
+    host.style.setProperty('--grid-offset-x', `${offsetX}px`);
+    host.style.setProperty('--grid-offset-y', `${offsetY}px`);
   }
 
   handleAddTile(e: CustomEvent<any>) {

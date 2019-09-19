@@ -1,4 +1,5 @@
 import { LightningElement, api } from 'lwc';
+import { mdiMenuUp, mdiMenuDown } from '@mdi/js';
 
 interface Slot {
   component: string,
@@ -8,6 +9,9 @@ interface Slot {
 
 export default class Button extends LightningElement {
   @api variant: string = 'default';
+  
+  mdiMenuUp: string = mdiMenuUp;
+  mdiMenuDown: string = mdiMenuDown;
 
   handleClick(e: Event) {
     //this.dispatchEvent(e);

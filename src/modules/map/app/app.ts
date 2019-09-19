@@ -40,7 +40,7 @@ export default class App extends LightningElement {
   }
 
   get data() {
-    return JSON.stringify(this.world);
+    return JSON.stringify(this.world.json());
   }
 
   loadingToastId: any;
