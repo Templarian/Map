@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 import Popper, { ReferenceObject } from 'popper.js';
 import { getPosition } from './getPosition';
 
@@ -6,6 +6,9 @@ export default class ContextMenu extends LightningElement {
   $menu: HTMLElement | null = null;
   $menuFocus: boolean = false;
   $position: ReferenceObject | null = null;
+
+  @api offsetTop: number | string = 0;
+  @api offsetLeft: number | string = 0;
 
   @track isOpen: boolean = false;
 
@@ -58,8 +61,9 @@ export default class ContextMenu extends LightningElement {
         modifiers: {
           computeStyle: {
             gpuAcceleration: false
-          }
-        } as any,
+          },
+          offset: `${this.offsetLeft}px, ${this.offsetTop}px`
+        } as any
       });
       menu.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
       menu.addEventListener('mouseleave', this.handleMouseLeave.bind(this));

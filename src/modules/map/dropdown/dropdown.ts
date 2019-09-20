@@ -1,10 +1,13 @@
-import { LightningElement, track } from 'lwc';
-import Popper from 'popper.js';
+import { LightningElement, api, track } from 'lwc';
+import Popper, { Data } from 'popper.js';
 
 export default class Dropdown extends LightningElement {
   $menu: HTMLElement | null = null;
   $menuFocus: boolean = false;
   $menuButton: Element | null = null;
+
+  @api offsetTop: number | string = 0;
+  @api offsetLeft: number | string = 0;
 
   @track isOpen: boolean = false;
 
@@ -60,19 +63,34 @@ export default class Dropdown extends LightningElement {
       }
       const menu = slotElements[0];
       document.addEventListener('mousedown', this.mouseDownHandler);
+      console.log(`${this.offsetLeft}px, ${this.offsetTop}px`);
       new Popper(this.$menuButton as Element, menu as Element, {
         placement: 'bottom-start',
         modifiers: {
           computeStyle: {
             gpuAcceleration: false
+          },
+          offset: {
+            offset: `${this.offsetLeft}px, ${this.offsetTop}px`
           }
         } as any,
+        onCreate: this.onPopperCreate.bind(this),
+        onUpdate: this.onPopperUpdate.bind(this)
       });
       menu.addEventListener('mouseenter', this.handleMouseEnter.bind(this));
       menu.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
       menu.addEventListener('click', this.handleMouseClick.bind(this));
       this.$menu = menu;
     }
+  }
+
+  flipped = false;
+  onPopperCreate(data: Data) {
+    this.flipped = data.flipped;
+  }
+
+  onPopperUpdate(data: Data) {
+    // Update Class
   }
 
   handleMouseEnter() {

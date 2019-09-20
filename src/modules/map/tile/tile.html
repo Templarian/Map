@@ -1,20 +1,25 @@
 <template>
-    <map-context-menu>
-        <button class={computedClass}
-            onclick={handleClick}>
-            <template for:each={tile.layers} for:item="layer">
-                <img key={layer.id} src={layer.src}></img>
-            </template>
-            <span>{hash}</span>
-        </button>
+    <map-dropdown>
+        <map-context-menu>
+            <button class={computedClass}
+                onclick={handleClick}>
+                <template for:each={tile.layers} for:item="layer">
+                    <img key={layer.id} src={layer.src}></img>
+                </template>
+                <span>{hash}</span>
+            </button>
+            <map-menu slot="menu">
+                <map-menu-item onclick={handleDelete}>Delete</map-menu-item>
+                <map-menu-separator></map-menu-separator>
+                <map-menu-item if:true={tile.comment} onclick={handleComment}>
+                    Delete Comment
+                </map-menu-item>
+            </map-menu>
+        </map-context-menu>
         <map-menu slot="menu">
-            <map-menu-item onclick={handleDelete}>Delete</map-menu-item>
-            <map-menu-separator></map-menu-separator>
-            <map-menu-item if:true={tile.comment} onclick={handleComment}>
-                Delete Comment
-            </map-menu-item>
+            Lets do a really large custom editor here!
         </map-menu>
-    </map-context-menu>
+    </map-dropdown>
     <map-modal if:true={openDeleteComment}>
         <map-modal-body>
             <p>Are you sure you want to clear the comment?</p>
