@@ -11,21 +11,23 @@ export default class Dropdown extends LightningElement {
 
   @track isOpen: boolean = false;
 
-  contextMenuHandler: any;
+  clickHandler: any;
   mouseDownHandler: any;
+  contextMenuHandler: any;
   mouseEnterMenuHandler: any;
   mouseLeaveMenuHandler: any;
 
   constructor() {
     super();
 
-    this.contextMenuHandler = this.handleContextMenu.bind(this);
+    this.clickHandler = this.handleClick.bind(this);
     this.mouseDownHandler = this.handleMouseDown.bind(this);
+    this.contextMenuHandler = this.handleContextMenu.bind(this);
     this.mouseEnterMenuHandler = this.handleMouseEnterMenu.bind(this);
     this.mouseLeaveMenuHandler = this.handleMouseLeaveMenu.bind(this);
   }
 
-  handleContextMenu(e: MouseEvent) {
+  handleClick(e: MouseEvent) {
     if(this.isOpen && this.$menuFocus) {
       this.isOpen = false;
     } else {
@@ -33,10 +35,15 @@ export default class Dropdown extends LightningElement {
     }
   }
 
+  handleContextMenu() {
+    this.isOpen = false;
+  }
+
   handleMouseDown(e: MouseEvent) {
     if (!this.$menuFocus) {
       this.isOpen = false;
       document.removeEventListener('mousedown', this.mouseDownHandler);
+      document.removeEventListener('contextmenu', this.contextMenuHandler);
     }
   }
 
@@ -44,7 +51,7 @@ export default class Dropdown extends LightningElement {
     const slot = this.template.childNodes[1] as HTMLSlotElement;
     const slotElements = slot.assignedElements();
     const menuButton = slotElements[0];
-    menuButton.addEventListener('click', this.contextMenuHandler);
+    menuButton.addEventListener('click', this.clickHandler);
     menuButton.addEventListener('mouseenter', this.mouseEnterMenuHandler);
     menuButton.addEventListener('mouseleave', this.mouseLeaveMenuHandler);
     this.$menuButton = menuButton;
@@ -56,13 +63,14 @@ export default class Dropdown extends LightningElement {
       console.log('menu slot changed');
       const slotElements = slot.assignedElements() as HTMLElement[];
       if (slotElements.length === 0) {
-        throw new Error('contextMenu missing menu slot.');
+        throw new Error('dropdown missing menu slot.');
       }
       if (slotElements.length > 1) {
-        throw new Error('contextMenu must only contain one root element in the menu slot.');
+        throw new Error('dropdown must only contain one root element in the menu slot.');
       }
       const menu = slotElements[0];
       document.addEventListener('mousedown', this.mouseDownHandler);
+      document.addEventListener('contextmenu', this.contextMenuHandler);
       console.log(`${this.offsetLeft}px, ${this.offsetTop}px`);
       new Popper(this.$menuButton as Element, menu as Element, {
         placement: 'bottom-start',
@@ -104,6 +112,7 @@ export default class Dropdown extends LightningElement {
   handleMouseClick() {
     this.isOpen = false;
     document.removeEventListener('mousedown', this.mouseDownHandler);
+    document.removeEventListener('contextmenu', this.contextMenuHandler);
   }
 
   handleMouseEnterMenu() {

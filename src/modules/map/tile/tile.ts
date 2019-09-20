@@ -16,6 +16,10 @@ export default class Tile extends LightningElement {
         return this.tile.coordinate[1];
     }
 
+    get computedClass() {
+        return 'tile';
+    }
+
     renderedCallback() {
         const [x, y] = this.tile.gridCoordinate || [0, 0];
         const ele = this.template.host as HTMLElement;
@@ -45,5 +49,10 @@ export default class Tile extends LightningElement {
         this.tile.comment = '';
         this.openDeleteComment = false;
         addToast('Deleted Comment', 3);
+    }
+
+    tileWallHandler(e: MouseEvent) {
+        const ele = e.currentTarget as HTMLElement;
+        console.log(ele.dataset.wall)
     }
 }

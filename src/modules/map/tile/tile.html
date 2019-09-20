@@ -6,6 +6,11 @@
                 <template for:each={tile.layers} for:item="layer">
                     <img key={layer.id} src={layer.src}></img>
                 </template>
+                <template if:true={tile.comment}>
+                    <svg class="comment" viewBox="0 0 24 24">
+                        <path d="M 24,2.86102e-005L 24,20C 24,21.6569 22.6569,23 21,23C 20.1716,23 19.4216,22.6642 18.8787,22.1213L 1.87867,5.12132C 1.33578,4.57843 1,3.82842 1,3C 1,1.34315 2.34315,0 4,0L 4.01379,2.86102e-005L 24,2.86102e-005 Z "></path>
+                    </svg>
+                </template>
                 <span>{hash}</span>
             </button>
             <map-menu slot="menu">
@@ -17,7 +22,64 @@
             </map-menu>
         </map-context-menu>
         <map-menu slot="menu">
-            Lets do a really large custom editor here!
+            <div class="wall">
+                <div>
+                    <button onclick={tileWallHandler} data-wall="9">
+                        <img src="resources/tiles/wall-9.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="1">
+                        <img src="resources/tiles/wall-1.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="3">
+                        <img src="resources/tiles/wall-3.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="11">
+                        <img src="resources/tiles/wall-11.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="8">
+                        <img src="resources/tiles/wall-8.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="0">
+                        <img src="resources/tiles/wall-0.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="2">
+                        <img src="resources/tiles/wall-2.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="10">
+                        <img src="resources/tiles/wall-10.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="12">
+                        <img src="resources/tiles/wall-12.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="4">
+                        <img src="resources/tiles/wall-4.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="6">
+                        <img src="resources/tiles/wall-6.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="14">
+                        <img src="resources/tiles/wall-14.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="13">
+                        <img src="resources/tiles/wall-13.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="5">
+                        <img src="resources/tiles/wall-5.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="7">
+                        <img src="resources/tiles/wall-7.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="15">
+                        <img src="resources/tiles/wall-15.svg"></img>
+                    </button>
+                </div>
+            </div>
         </map-menu>
     </map-dropdown>
     <map-modal if:true={openDeleteComment}>

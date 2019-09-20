@@ -9,7 +9,7 @@
 :host(:hover) {
   order: 1;
 }
-button {
+button.tile {
   display: flex;
   padding: 0;
   width: 4rem;
@@ -20,7 +20,7 @@ button {
   border: 0;
 }
 
-button:hover::before {
+button.tile:hover::before {
   content: ' ';
   display: block;
   position: absolute;
@@ -33,15 +33,56 @@ button:hover::before {
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
 
-button img + img {
+button.tile img + img {
   margin-left: -4rem;
 }
 
-button span {
+button.tile span {
   display: flex;
   width: 4rem;
   height: 4rem;
   margin-left: -4rem;
   align-items: center;
   justify-content: center;
+}
+
+.wall {
+  display: flex;
+  flex-direction: column;
+}
+
+.wall > div {
+  display: flex;
+  flex-direction: row;
+}
+
+.wall button {
+  padding: 0;
+  border: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0.25rem solid #FFF;
+  cursor: pointer;
+}
+
+.wall div:not(:last-child) {
+  margin-bottom: -0.25rem;
+}
+
+.wall button:not(:last-child) {
+  margin-right: -0.25rem;
+}
+
+.wall button:hover {
+  border-color: rgba(20, 146, 230, 0.5);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+.comment {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  margin-left: 40px;
+  fill: rgba(255, 200, 0, 0.5);
 }
