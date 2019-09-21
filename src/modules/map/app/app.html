@@ -33,6 +33,11 @@
         <map-button variant="primary" onclick={fireToast3}>
             <map-icon path={mdiMessageText}></map-icon>
         </map-button>
+        <h3>Block</h3>
+        <map-button onclick={fireToast} block>
+            <map-icon slot="right" path={mdiMessageText}></map-icon>
+            Fire Toast (block)
+        </map-button>
     </section>
     <section>
         <h2>Button Group</h2>
@@ -42,7 +47,13 @@
         </map-button-group>
         &nbsp;
         <map-button-group>
-            <map-button><map-icon path={mdiFormatAlignLeft}></map-icon></map-button>
+            <map-button active><map-icon path={mdiFormatAlignLeft}></map-icon></map-button>
+            <map-button><map-icon path={mdiFormatAlignCenter}></map-icon></map-button>
+            <map-button><map-icon path={mdiFormatAlignRight}></map-icon></map-button>
+        </map-button-group>
+        <h3>Block</h3>
+        <map-button-group block>
+            <map-button active><map-icon path={mdiFormatAlignLeft}></map-icon></map-button>
             <map-button><map-icon path={mdiFormatAlignCenter}></map-icon></map-button>
             <map-button><map-icon path={mdiFormatAlignRight}></map-icon></map-button>
         </map-button-group>
@@ -62,6 +73,17 @@
         <map-dropdown>
             <map-button variant="primary">
                 <map-icon path={mdiMessageText}></map-icon>
+            </map-button>
+            <map-menu slot="menu">
+                <map-menu-item>Option 1</map-menu-item>
+                <map-menu-item>Option 2</map-menu-item>
+            </map-menu>
+        </map-dropdown>
+        <h3>Block</h3>
+        <map-dropdown block>
+            <map-button variant="primary" >
+                <map-icon slot="left" path={mdiMessageText}></map-icon>
+                Block Menu
             </map-button>
             <map-menu slot="menu">
                 <map-menu-item>Option 1</map-menu-item>

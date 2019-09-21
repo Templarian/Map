@@ -1,10 +1,20 @@
 import { LightningElement, api } from 'lwc';
 
+const VARIANT_DEFAULT = 'default';
+const DEFAULT_VARIANT = VARIANT_DEFAULT;
+
 export default class ButtonGroup extends LightningElement {
-  @api variant: string = 'default';
+  @api variant: string = DEFAULT_VARIANT;
+  @api block: boolean = false;
 
   get computedClass() {
     return `variant-${this.variant}`;
+  }
+
+  renderedCallback() {
+    if (this.block) {
+      this.template.host.classList.add('block');
+    }
   }
 
   handleSlotChange(e: Event) {
@@ -18,6 +28,9 @@ export default class ButtonGroup extends LightningElement {
           variant: this.variant
         }
       }));
+      if (this.block) {
+        (element as any).block = true;
+      }
     });
   }
 

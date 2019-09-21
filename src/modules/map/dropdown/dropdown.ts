@@ -8,6 +8,7 @@ export default class Dropdown extends LightningElement {
   $menuFocus: boolean = false;
   $menuButton: Element | null = null;
 
+  @api block: boolean = false;
   @api placement: Placement = DEFAULT_PLACEMENT;
   @api offsetTop: number | string = 0;
   @api offsetLeft: number | string = 0;
@@ -28,6 +29,12 @@ export default class Dropdown extends LightningElement {
     this.contextMenuHandler = this.handleContextMenu.bind(this);
     this.mouseEnterMenuHandler = this.handleMouseEnterMenu.bind(this);
     this.mouseLeaveMenuHandler = this.handleMouseLeaveMenu.bind(this);
+  }
+
+  renderedCallback() {
+    if (this.block) {
+      this.template.host.classList.add('block');
+    }
   }
 
   handleClick(e: MouseEvent) {
@@ -59,6 +66,9 @@ export default class Dropdown extends LightningElement {
     menuButton.addEventListener('mouseleave', this.mouseLeaveMenuHandler);
     menuButton.classList.add(`dropdown`);
     menuButton.classList.add(`dropdown-${this.placement}`);
+    if (this.block) {
+      menuButton.classList.add(`block`);
+    }
     this.$menuButton = menuButton;
   }
 

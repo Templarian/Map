@@ -1,5 +1,17 @@
 :host {
-  display: inline-block;
+  display: inline-flex;
+  vertical-align: middle;
+}
+:host(.block) {
+  display: flex;
+  flex: 1;
+}
+:host(.block) button {
+  width: calc(100% + 1px);
+}
+:host(.active) button {
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3) inset;
+  border: #FFF;
 }
 
 button {
@@ -12,6 +24,17 @@ button {
 
 button:hover {
   border-color: #BBB;
+}
+
+button > span {
+  display: flex;
+  align-items: center;
+}
+button > span > span {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
 }
 
 button.variant-primary {
@@ -28,7 +51,6 @@ button.variant-primary:hover {
 .caret-left,
 .caret-right {
   display: none;
-  vertical-align: middle;
   margin: -0.25rem 0 -0.25rem 0;
 }
 .caret-left { margin-left: -0.25rem; }
