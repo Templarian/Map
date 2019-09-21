@@ -1,9 +1,9 @@
 <template>
   <button onclick={handleClick} class={computedClass}>
+    <map-icon class={computedCaretLeft} path={mdiMenuDown}></map-icon>
     <slot name="left" onslotchange={handleLeftSlotChange}></slot>
     <slot onslotchange={handleSlotChange}></slot>
     <slot name="right" onslotchange={handleRightSlotChange}></slot>
-    <map-icon class="down" path={mdiMenuDown}></map-icon>
-    <map-icon class="up" path={mdiMenuUp}></map-icon>
+    <map-icon class={computedCaretRight} path={mdiMenuDown}></map-icon>
   </button>
 </template>

@@ -40,6 +40,12 @@
             <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
             <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
         </map-button-group>
+        &nbsp;
+        <map-button-group>
+            <map-button><map-icon path={mdiFormatAlignLeft}></map-icon></map-button>
+            <map-button><map-icon path={mdiFormatAlignCenter}></map-icon></map-button>
+            <map-button><map-icon path={mdiFormatAlignRight}></map-icon></map-button>
+        </map-button-group>
     </section>
     <section>
         <h2>Button Menu</h2>
@@ -83,6 +89,7 @@
             <map-icon slot="left" path={mdiScript}></map-icon>
             Load Mock Map
         </map-button>
+        &nbsp;
         <map-button onclick={loadMap2}>Load Mock Error</map-button>
     </section>
     <map-details name="Foo"></map-details>

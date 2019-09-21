@@ -2,7 +2,14 @@ import { LightningElement, track, wire } from 'lwc';
 import { getMap } from 'services/mapService';
 import { addToast, addErrorToast, addWarningToast, addLoadingToast, removeToast } from 'services/toastService';
 import World from 'models/world';
-import { mdiAccount, mdiMessageText, mdiScript } from '@mdi/js';
+import {
+  mdiAccount,
+  mdiMessageText,
+  mdiScript,
+  mdiFormatAlignLeft,
+  mdiFormatAlignRight,
+  mdiFormatAlignCenter
+} from '@mdi/js';
 
 export default class App extends LightningElement {
 
@@ -13,6 +20,9 @@ export default class App extends LightningElement {
   @track mdiAccount: string = mdiAccount;
   @track mdiMessageText: string = mdiMessageText;
   @track mdiScript: string = mdiScript;
+  @track mdiFormatAlignLeft: string = mdiFormatAlignLeft;
+  @track mdiFormatAlignRight: string = mdiFormatAlignRight;
+  @track mdiFormatAlignCenter: string = mdiFormatAlignCenter;
 
   @wire(getMap, { id: '$tileId' })
   function({ error, data }: any) {

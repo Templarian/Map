@@ -5,4 +5,7 @@ module.exports = {
         { from: 'src/resources', to: 'dist/resources' },
         { from: 'src/mock', to: 'dist/mock' }
     ],
+    stylesheetConfig: {
+        customProperties: { allowDefinition: false },
+    }
 };

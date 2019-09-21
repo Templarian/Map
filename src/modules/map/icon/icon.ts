@@ -26,8 +26,8 @@ export default class Tile extends LightningElement {
     const iconElement = target as Element;
     const slotName = slot.name ? `-${slot.name}` : '';
     const classes = [
-      `${slot.component}-slot${slotName}`,
-      `${slot.component}-slot${slotName}-${slot.variant}`
+      `${slot.component}-variant-${slot.variant}`,
+      `${slot.component}-slot${slotName}`
     ];
     iconElement.className = classes.join(' ');
   }

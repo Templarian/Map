@@ -1,11 +1,14 @@
 import { LightningElement, api, track } from 'lwc';
-import Popper, { Data } from 'popper.js';
+import Popper, { Data, Placement } from 'popper.js';
+
+const DEFAULT_PLACEMENT = 'bottom-start';
 
 export default class Dropdown extends LightningElement {
   $menu: HTMLElement | null = null;
   $menuFocus: boolean = false;
   $menuButton: Element | null = null;
 
+  @api placement: Placement = DEFAULT_PLACEMENT;
   @api offsetTop: number | string = 0;
   @api offsetLeft: number | string = 0;
 
@@ -54,13 +57,14 @@ export default class Dropdown extends LightningElement {
     menuButton.addEventListener('click', this.clickHandler);
     menuButton.addEventListener('mouseenter', this.mouseEnterMenuHandler);
     menuButton.addEventListener('mouseleave', this.mouseLeaveMenuHandler);
+    menuButton.classList.add(`dropdown`);
+    menuButton.classList.add(`dropdown-${this.placement}`);
     this.$menuButton = menuButton;
   }
 
   handleMenuSlotChange(e: Event) {
     const slot = this.template.childNodes[2] as HTMLSlotElement;
     if (slot) {
-      console.log('menu slot changed');
       const slotElements = slot.assignedElements() as HTMLElement[];
       if (slotElements.length === 0) {
         throw new Error('dropdown missing menu slot.');
@@ -71,9 +75,8 @@ export default class Dropdown extends LightningElement {
       const menu = slotElements[0];
       document.addEventListener('mousedown', this.mouseDownHandler);
       document.addEventListener('contextmenu', this.contextMenuHandler);
-      console.log(`${this.offsetLeft}px, ${this.offsetTop}px`);
       new Popper(this.$menuButton as Element, menu as Element, {
-        placement: 'bottom-start',
+        placement: this.placement,
         modifiers: {
           computeStyle: {
             gpuAcceleration: false
@@ -98,7 +101,9 @@ export default class Dropdown extends LightningElement {
   }
 
   onPopperUpdate(data: Data) {
-    // Update Class
+    this.$menuButton!.classList.remove(`dropdown-${this.placement}`);
+    this.$menuButton!.classList.add(`dropdown-${data.placement}`);
+    this.placement = data.placement;
   }
 
   handleMouseEnter() {

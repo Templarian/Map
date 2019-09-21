@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import { mdiMenuUp, mdiMenuDown } from '@mdi/js';
+import { mdiMenuDown } from '@mdi/js';
 
 interface Slot {
   component: string,
@@ -7,10 +7,11 @@ interface Slot {
   variant: string | null
 }
 
+const DEFAULT_VARIANT = 'default';
+
 export default class Button extends LightningElement {
-  @api variant: string = 'default';
+  @api variant: string = DEFAULT_VARIANT;
   
-  mdiMenuUp: string = mdiMenuUp;
   mdiMenuDown: string = mdiMenuDown;
 
   handleClick(e: Event) {
@@ -21,6 +22,14 @@ export default class Button extends LightningElement {
     return `variant-${this.variant}`;
   }
 
+  get computedCaretLeft() {
+    return `caret-left button-variant-${this.variant}`;
+  }
+
+  get computedCaretRight() {
+    return `caret-right button-variant-${this.variant}`;
+  }
+
   connectedCallback() {
     this.addEventListener('slot', this.slot as EventListener);
   }
@@ -29,15 +38,15 @@ export default class Button extends LightningElement {
     const iconElement = target as Element;
     const slotName = slot.name ? `-${slot.name}` : '';
     const classes = [
-      `${slot.component}-slot${slotName}`,
-      `${slot.component}-slot${slotName}-${slot.variant}`
+      `${slot.component}-variant-${slot.variant}`,
+      `${slot.component}-slot${slotName}`
     ];
     iconElement.className = classes.join(' ');
   }
 
   handleLeftSlotChange(e: Event) {
     const button = this.template.childNodes[1];
-    const leftSlot = button.childNodes[0] as HTMLSlotElement;
+    const leftSlot = button.childNodes[1] as HTMLSlotElement;
     const leftSlotElements = leftSlot.assignedElements();
     leftSlotElements.forEach(element => {
       element.dispatchEvent(new CustomEvent('slot', {
@@ -52,7 +61,7 @@ export default class Button extends LightningElement {
 
   handleSlotChange(e: Event) {
     const button = this.template.childNodes[1];
-    const slot = button.childNodes[1] as HTMLSlotElement;
+    const slot = button.childNodes[2] as HTMLSlotElement;
     const slotElements = slot.assignedElements();
     slotElements.forEach(element => {
       element.dispatchEvent(new CustomEvent('slot', {
@@ -67,7 +76,7 @@ export default class Button extends LightningElement {
 
   handleRightSlotChange(e: Event) {
     const button = this.template.childNodes[1];
-    const rightSlot = button.childNodes[2] as HTMLSlotElement;
+    const rightSlot = button.childNodes[3] as HTMLSlotElement;
     const rightSlotElements = rightSlot.assignedElements();
     rightSlotElements.forEach(element => {
       element.dispatchEvent(new CustomEvent('slot', {

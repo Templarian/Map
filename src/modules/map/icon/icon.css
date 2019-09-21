@@ -30,9 +30,7 @@ svg {
   margin-left: 0.25rem;
 }
 
-:host(.button-slot-primary) svg,
-:host(.button-slot-left-primary) svg,
-:host(.button-slot-right-primary) svg {
+:host(.button-variant-primary) svg {
   fill: #FFF;
 }
 /* - Button Group */

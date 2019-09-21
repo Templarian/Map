@@ -21,7 +21,7 @@ button svg {
     fill: #444;
 }
 
-button:hover svg{
+button:hover svg {
     fill: rgba(21, 146, 230, 1);
 }
 
@@ -89,14 +89,6 @@ button.variant-loading svg.loading {
 
 button.variant-loading svg.close {
     display: none;
-}
-
-button.seconds-1,
-button.seconds-2,
-button.seconds-3,
-button.seconds-4,
-button.seconds-5 {
-    margin-bottom: 1.25rem;
 }
 
 button.seconds-1::after,
