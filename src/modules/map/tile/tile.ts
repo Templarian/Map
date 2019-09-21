@@ -1,8 +1,10 @@
 import { LightningElement, track, api } from 'lwc';
 import TileCls from 'models/tile';
 import { addToast } from 'services/toastService';
+import Layer from 'models/layer';
 
 export default class Tile extends LightningElement {
+
     @track isLoading: boolean = true;
 
     @api tile: TileCls = new TileCls();
@@ -53,6 +55,12 @@ export default class Tile extends LightningElement {
 
     tileWallHandler(e: MouseEvent) {
         const ele = e.currentTarget as HTMLElement;
+        const layer = new Layer();
+        layer.id = 'wall-inner-left-1';
+        layer.file = 'wall-inner-left-1';
+        this.tile.layers.push(layer);
         console.log(ele.dataset.wall)
+        // call update
+        this.dispatchEvent(new CustomEvent('updatetile', {}));
     }
 }

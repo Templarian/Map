@@ -18,7 +18,7 @@ export default class Tile {
   public layers: Layer[] = [];
 
   public get hash() {
-    return `${this.gridX}, ${this.gridY}`
+    return `${this.gridX}, ${this.gridY}: ${this.layers.length}`;
   }
 
   private $coordinate: [number, number] = [0, 0];

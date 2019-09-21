@@ -4,6 +4,7 @@
 const { jestConfig } = require('lwc-services/lib/config/jestConfig');
 
 module.exports = {
-    ...jestConfig
+    ...jestConfig,
     // Add your custom Jest configuration
+    testMatch: ['**/__tests__/**/?(*.)(spec|test).ts', '**/__tests__/**/?(*.)(spec|test).ts']
 };
