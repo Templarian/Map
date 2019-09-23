@@ -38,6 +38,7 @@ export default class Dropdown extends LightningElement {
   }
 
   handleClick(e: MouseEvent) {
+    const currentTarget = e.currentTarget as Element;
     if(this.isOpen && this.$menuFocus) {
       this.isOpen = false;
     } else {

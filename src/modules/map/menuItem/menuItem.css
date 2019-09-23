@@ -1,6 +1,7 @@
 :host {
   display: flex;
 }
+
 button {
   border: 0;
   background: #FFF;
@@ -11,4 +12,8 @@ button {
 }
 button:hover {
   background: #EEE;
+}
+
+button > span {
+  display: flex;
 }

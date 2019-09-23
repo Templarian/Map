@@ -11,6 +11,7 @@ const DEFAULT_VARIANT = 'default';
 
 export default class Button extends LightningElement {
   @api variant: string = DEFAULT_VARIANT;
+  @api submit: boolean = false;
 
   _block: boolean = false;
   @api
@@ -52,6 +53,13 @@ export default class Button extends LightningElement {
 
   connectedCallback() {
     this.addEventListener('slot', this.slot as EventListener);
+    if (this.submit) {
+      this.addEventListener('click', () => {
+        this.dispatchEvent(new CustomEvent('form_submit', {
+          bubbles: true
+        }));
+      });
+    }
   }
 
   updateHostClass() {

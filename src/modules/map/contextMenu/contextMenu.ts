@@ -80,8 +80,9 @@ export default class ContextMenu extends LightningElement {
     this.$menuFocus = false;
   }
 
-  handleMouseClick() {
+  handleMouseClick(e: MouseEvent) {
     this.isOpen = false;
+    e.stopPropagation();
     document.removeEventListener('mousedown', this.mouseDownHandler);
   }
 

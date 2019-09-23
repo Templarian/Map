@@ -14,15 +14,29 @@
                 <span>{hash}</span>
             </button>
             <map-menu slot="menu">
-                <map-menu-item onclick={handleDelete}>Delete</map-menu-item>
-                <map-menu-separator></map-menu-separator>
+                <map-menu-item onclick={handleEditComment}>
+                    <map-icon slot="left" path={mdiPencil}></map-icon>
+                    Edit Comment
+                </map-menu-item>
                 <map-menu-item if:true={tile.comment} onclick={handleComment}>
+                    <map-icon slot="left" path={mdiCommentRemove}></map-icon>
                     Delete Comment
+                </map-menu-item>
+                <map-menu-separator></map-menu-separator>
+                <map-menu-item onclick={handleDelete}>
+                    <map-icon slot="left" path={mdiDelete}></map-icon>
+                    Delete
                 </map-menu-item>
             </map-menu>
         </map-context-menu>
         <map-menu slot="menu">
-            <div class="wall">
+            <div style="padding:0.5rem 0.5rem 0.25rem 0.5rem">
+                <map-button-group block>
+                    <map-button active={insideActive} onclick={handleToggleInside}>Inside</map-button>
+                    <map-button active={outsideActive} onclick={handleToggleOutside}>Outside</map-button>
+                </map-button-group>
+            </div>
+            <div if:true={insideActive} class="wall">
                 <div>
                     <button onclick={tileWallHandler} data-wall="9">
                         <img src="resources/tiles/wall-9.svg"></img>
@@ -80,6 +94,64 @@
                     </button>
                 </div>
             </div>
+            <div if:true={outsideActive} class="wall">
+                <div>
+                    <button onclick={tileWallHandler} data-wall="9">
+                        <img src="resources/tiles/wall-outside-9.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="1">
+                        <img src="resources/tiles/wall-outside-1.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="3">
+                        <img src="resources/tiles/wall-outside-3.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="11">
+                        <img src="resources/tiles/wall-outside-11.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="8">
+                        <img src="resources/tiles/wall-outside-8.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="0">
+                        <img src="resources/tiles/wall-outside-0.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="2">
+                        <img src="resources/tiles/wall-outside-2.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="10">
+                        <img src="resources/tiles/wall-outside-10.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="12">
+                        <img src="resources/tiles/wall-outside-12.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="4">
+                        <img src="resources/tiles/wall-outside-4.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="6">
+                        <img src="resources/tiles/wall-outside-6.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="14">
+                        <img src="resources/tiles/wall-outside-14.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="13">
+                        <img src="resources/tiles/wall-outside-13.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="5">
+                        <img src="resources/tiles/wall-outside-5.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="7">
+                        <img src="resources/tiles/wall-outside-7.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="15">
+                        <img src="resources/tiles/wall-outside-15.svg"></img>
+                    </button>
+                </div>
+            </div>
         </map-menu>
     </map-dropdown>
     <map-modal if:true={openDeleteComment}>
@@ -90,5 +162,15 @@
             <map-button onclick={cancelDeleteComment}>Cancel</map-button>
             <map-button onclick={confirmDeleteComment} variant="primary">Delete</map-button>
         </map-modal-footer>
+    </map-modal>
+    <map-modal if:true={modalOpen} width="80%">
+        <map-form onchange={updateComment} onsubmit={submitComment}>
+            <map-modal-body>
+                <map-textarea focus name="comment" value={tile.comment}></map-textarea>
+            </map-modal-body>
+            <map-modal-footer>
+                <map-button submit variant="primary">Update</map-button>
+            </map-modal-footer>
+        </map-form>
     </map-modal>
 </template>
