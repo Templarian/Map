@@ -1,6 +1,6 @@
 <template>
-    <map-dropdown>
-        <map-context-menu>
+    <ui-dropdown>
+        <ui-context-menu>
             <button class={computedClass}
                 onclick={handleClick}>
                 <template for:each={tile.layers} for:item="layer">
@@ -13,28 +13,32 @@
                 </template>
                 <span>{hash}</span>
             </button>
-            <map-menu slot="menu">
-                <map-menu-item onclick={handleEditComment}>
-                    <map-icon slot="left" path={mdiPencil}></map-icon>
+            <ui-menu slot="menu">
+                <ui-menu-item if:false={tile.comment} onclick={handleEditComment}>
+                    <ui-icon slot="left" path={mdiCommentPlus}></ui-icon>
+                    Add Comment
+                </ui-menu-item>
+                <ui-menu-item if:true={tile.comment} onclick={handleEditComment}>
+                    <ui-icon slot="left" path={mdiPencil}></ui-icon>
                     Edit Comment
-                </map-menu-item>
-                <map-menu-item if:true={tile.comment} onclick={handleComment}>
-                    <map-icon slot="left" path={mdiCommentRemove}></map-icon>
+                </ui-menu-item>
+                <ui-menu-item if:true={tile.comment} onclick={handleComment}>
+                    <ui-icon slot="left" path={mdiCommentRemove}></ui-icon>
                     Delete Comment
-                </map-menu-item>
-                <map-menu-separator></map-menu-separator>
-                <map-menu-item onclick={handleDelete}>
-                    <map-icon slot="left" path={mdiDelete}></map-icon>
+                </ui-menu-item>
+                <ui-menu-separator></ui-menu-separator>
+                <ui-menu-item onclick={handleDelete}>
+                    <ui-icon slot="left" path={mdiDelete}></ui-icon>
                     Delete
-                </map-menu-item>
-            </map-menu>
-        </map-context-menu>
-        <map-menu slot="menu">
+                </ui-menu-item>
+            </ui-menu>
+        </ui-context-menu>
+        <ui-menu slot="menu">
             <div style="padding:0.5rem 0.5rem 0.25rem 0.5rem">
-                <map-button-group block>
-                    <map-button active={insideActive} onclick={handleToggleInside}>Inside</map-button>
-                    <map-button active={outsideActive} onclick={handleToggleOutside}>Outside</map-button>
-                </map-button-group>
+                <ui-button-group block>
+                    <ui-button active={insideActive} onclick={handleToggleInside}>Inside</ui-button>
+                    <ui-button active={outsideActive} onclick={handleToggleOutside}>Outside</ui-button>
+                </ui-button-group>
             </div>
             <div if:true={insideActive} class="wall">
                 <div>
@@ -152,25 +156,25 @@
                     </button>
                 </div>
             </div>
-        </map-menu>
-    </map-dropdown>
-    <map-modal if:true={openDeleteComment}>
-        <map-modal-body>
+        </ui-menu>
+    </ui-dropdown>
+    <ui-modal if:true={openDeleteComment}>
+        <ui-modal-body>
             <p>Are you sure you want to clear the comment?</p>
-        </map-modal-body>
-        <map-modal-footer>
-            <map-button onclick={cancelDeleteComment}>Cancel</map-button>
-            <map-button onclick={confirmDeleteComment} variant="primary">Delete</map-button>
-        </map-modal-footer>
-    </map-modal>
-    <map-modal if:true={modalOpen} width="80%">
-        <map-form onchange={updateComment} onsubmit={submitComment}>
-            <map-modal-body>
-                <map-textarea focus name="comment" value={tile.comment}></map-textarea>
-            </map-modal-body>
-            <map-modal-footer>
-                <map-button submit variant="primary">Update</map-button>
-            </map-modal-footer>
-        </map-form>
-    </map-modal>
+        </ui-modal-body>
+        <ui-modal-footer>
+            <ui-button onclick={cancelDeleteComment}>Cancel</ui-button>
+            <ui-button onclick={confirmDeleteComment} variant="primary">Delete</ui-button>
+        </ui-modal-footer>
+    </ui-modal>
+    <ui-modal if:true={modalOpen} width="80%">
+        <ui-form onchange={updateComment} onsubmit={submitComment}>
+            <ui-modal-body>
+                <ui-textarea focus name="comment" value={tile.comment}></ui-textarea>
+            </ui-modal-body>
+            <ui-modal-footer>
+                <ui-button submit variant="primary">Update</ui-button>
+            </ui-modal-footer>
+        </ui-form>
+    </ui-modal>
 </template>

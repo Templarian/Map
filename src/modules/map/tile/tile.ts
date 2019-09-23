@@ -5,7 +5,8 @@ import Layer from 'models/layer';
 import {
     mdiDelete,
     mdiPencil,
-    mdiCommentRemove
+    mdiCommentRemove,
+    mdiCommentPlus
 } from '@mdi/js';
 
 export default class Tile extends LightningElement {
@@ -14,6 +15,7 @@ export default class Tile extends LightningElement {
     @track mdiCommentRemove: string = mdiCommentRemove;
     @track mdiDelete: string = mdiDelete;
     @track mdiPencil: string = mdiPencil;
+    @track mdiCommentPlus: string = mdiCommentPlus;
 
     @api tile: TileCls = new TileCls();
     @api hash: string = '';

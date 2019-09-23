@@ -8,117 +8,117 @@
         </template>
     </map-world>
     <template if:false={tileId}>
-        <map-modal>
+        <ui-modal>
             <h1>Load Map</h1>
             <p>Select Map Modal Here</p>
-            <map-button onclick={loadMap}>
-                <map-icon slot="left" path={mdiScript}></map-icon>
+            <ui-button onclick={loadMap}>
+                <ui-icon slot="left" path={mdiScript}></ui-icon>
                 Load Mock Map
-            </map-button>
-        </map-modal>
+            </ui-button>
+        </ui-modal>
     </template>
-    <map-toast></map-toast>
+    <ui-toast></ui-toast>
     <section>
         <h2>Buttons</h2>
-        <map-button onclick={fireToast}>
-            <map-icon slot="left" path={mdiMessageText}></map-icon>
+        <ui-button onclick={fireToast}>
+            <ui-icon slot="left" path={mdiMessageText}></ui-icon>
             Fire Toast
-        </map-button>
+        </ui-button>
         &nbsp;
-        <map-button variant="primary" onclick={fireToast3}>
-            <map-icon slot="left" path={mdiMessageText}></map-icon>
+        <ui-button variant="primary" onclick={fireToast3}>
+            <ui-icon slot="left" path={mdiMessageText}></ui-icon>
             Fire Toast 3 Seconds
-        </map-button>
+        </ui-button>
         &nbsp;
-        <map-button variant="primary" onclick={fireToast3}>
-            <map-icon path={mdiMessageText}></map-icon>
-        </map-button>
+        <ui-button variant="primary" onclick={fireToast3}>
+            <ui-icon path={mdiMessageText}></ui-icon>
+        </ui-button>
         <h3>Block</h3>
-        <map-button onclick={fireToast} block>
-            <map-icon slot="right" path={mdiMessageText}></map-icon>
+        <ui-button onclick={fireToast} block>
+            <ui-icon slot="right" path={mdiMessageText}></ui-icon>
             Fire Toast (block)
-        </map-button>
+        </ui-button>
     </section>
     <section>
         <h2>Button Group</h2>
-        <map-button-group>
-            <map-button onclick={fireErrorToast}>Fire Error Toast</map-button>
-            <map-button onclick={fireWarningToast}>Fire Warning Toast</map-button>
-        </map-button-group>
+        <ui-button-group>
+            <ui-button onclick={fireErrorToast}>Fire Error Toast</ui-button>
+            <ui-button onclick={fireWarningToast}>Fire Warning Toast</ui-button>
+        </ui-button-group>
         &nbsp;
-        <map-button-group>
-            <map-button active><map-icon path={mdiFormatAlignLeft}></map-icon></map-button>
-            <map-button><map-icon path={mdiFormatAlignCenter}></map-icon></map-button>
-            <map-button><map-icon path={mdiFormatAlignRight}></map-icon></map-button>
-        </map-button-group>
+        <ui-button-group>
+            <ui-button active><ui-icon path={mdiFormatAlignLeft}></ui-icon></ui-button>
+            <ui-button><ui-icon path={mdiFormatAlignCenter}></ui-icon></ui-button>
+            <ui-button><ui-icon path={mdiFormatAlignRight}></ui-icon></ui-button>
+        </ui-button-group>
         <h3>Block</h3>
-        <map-button-group block>
-            <map-button active><map-icon path={mdiFormatAlignLeft}></map-icon></map-button>
-            <map-button><map-icon path={mdiFormatAlignCenter}></map-icon></map-button>
-            <map-button><map-icon path={mdiFormatAlignRight}></map-icon></map-button>
-        </map-button-group>
+        <ui-button-group block>
+            <ui-button active><ui-icon path={mdiFormatAlignLeft}></ui-icon></ui-button>
+            <ui-button><ui-icon path={mdiFormatAlignCenter}></ui-icon></ui-button>
+            <ui-button><ui-icon path={mdiFormatAlignRight}></ui-icon></ui-button>
+        </ui-button-group>
     </section>
     <section>
         <h2>Button Menu</h2>
-        <map-dropdown>
-            <map-button>
+        <ui-dropdown>
+            <ui-button>
                 Menu
-            </map-button>
-            <map-menu slot="menu">
-                <map-menu-item>Option 1</map-menu-item>
-                <map-menu-item>Option 2</map-menu-item>
-            </map-menu>
-        </map-dropdown>
+            </ui-button>
+            <ui-menu slot="menu">
+                <ui-menu-item>Option 1</ui-menu-item>
+                <ui-menu-item>Option 2</ui-menu-item>
+            </ui-menu>
+        </ui-dropdown>
         &nbsp;
-        <map-dropdown>
-            <map-button variant="primary">
-                <map-icon path={mdiMessageText}></map-icon>
-            </map-button>
-            <map-menu slot="menu">
-                <map-menu-item>Option 1</map-menu-item>
-                <map-menu-item>Option 2</map-menu-item>
-            </map-menu>
-        </map-dropdown>
+        <ui-dropdown>
+            <ui-button variant="primary">
+                <ui-icon path={mdiMessageText}></ui-icon>
+            </ui-button>
+            <ui-menu slot="menu">
+                <ui-menu-item>Option 1</ui-menu-item>
+                <ui-menu-item>Option 2</ui-menu-item>
+            </ui-menu>
+        </ui-dropdown>
         <h3>Block</h3>
-        <map-dropdown block>
-            <map-button variant="primary" >
-                <map-icon slot="left" path={mdiMessageText}></map-icon>
+        <ui-dropdown block>
+            <ui-button variant="primary" >
+                <ui-icon slot="left" path={mdiMessageText}></ui-icon>
                 Block Menu
-            </map-button>
-            <map-menu slot="menu">
-                <map-menu-item>
-                    <map-icon slot="left" path={mdiScript}></map-icon>
+            </ui-button>
+            <ui-menu slot="menu">
+                <ui-menu-item>
+                    <ui-icon slot="left" path={mdiScript}></ui-icon>
                     Option 1
-                </map-menu-item>
-                <map-menu-item>
-                    <map-icon slot="left" path={mdiScript}></map-icon>
+                </ui-menu-item>
+                <ui-menu-item>
+                    <ui-icon slot="left" path={mdiScript}></ui-icon>
                     Option 2
-                </map-menu-item>
-            </map-menu>
-        </map-dropdown>
+                </ui-menu-item>
+            </ui-menu>
+        </ui-dropdown>
     </section>
     <section>
         <h2>Context Menu</h2>
         <p>Right click the button below.</p>
-        <map-context-menu>
+        <ui-context-menu>
             <button>
                 Right Click Me
             </button>
-            <map-menu slot="menu">
-                <map-menu-item>Fake Option 1</map-menu-item>
-                <map-menu-item>Fake Option 2</map-menu-item>
-                <map-menu-item>Fake Option 3</map-menu-item>
-            </map-menu>
-        </map-context-menu>
+            <ui-menu slot="menu">
+                <ui-menu-item>Fake Option 1</ui-menu-item>
+                <ui-menu-item>Fake Option 2</ui-menu-item>
+                <ui-menu-item>Fake Option 3</ui-menu-item>
+            </ui-menu>
+        </ui-context-menu>
     </section>
     <section>
         <h2>Load Map</h2>
-        <map-button onclick={loadMap}>
-            <map-icon slot="left" path={mdiScript}></map-icon>
+        <ui-button onclick={loadMap}>
+            <ui-icon slot="left" path={mdiScript}></ui-icon>
             Load Mock Map
-        </map-button>
+        </ui-button>
         &nbsp;
-        <map-button onclick={loadMap2}>Load Mock Error</map-button>
+        <ui-button onclick={loadMap2}>Load Mock Error</ui-button>
     </section>
     <map-details name="Foo"></map-details>
     <section>
