@@ -116,6 +116,7 @@ export default class World {
       this.tiles = world.tiles.map(tile => new Tile().from(tile));
       this.iterateTiles(this.tiles[0], (tile: Tile, [x, y]: Coordinate) => {
         tile.setCoordinate(x, y);
+        tile.setWorld(this);
       });
       const [offsetX, offsetY] = this.gridOffset;
       this.tiles.forEach(tile => {
@@ -189,6 +190,7 @@ export default class World {
     const s = [...sides.map(s => s ? s.id[0] : null)];
     tile.id = [uuid, s[0], s[1], s[2], s[3]];
     tile.layers = layers || [new Layer().from('paper-tan'), new Layer().from('tile-lines-1')];
+    tile.setWorld(this);
     this.tiles.push(tile);
     if (sides[0]) { sides[0].id[3] = uuid; }
     if (sides[1]) { sides[1].id[4] = uuid; }

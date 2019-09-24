@@ -1,5 +1,6 @@
 import Layer from "./layer";
 import Collision from "./collision";
+import World from "./world";
 
 interface ISideCallback {
   (sideId: string | null, index: number): void;
@@ -16,9 +17,10 @@ export default class Tile {
   public comment: string | null = null;
   public collision: Collision = Collision.None;
   public layers: Layer[] = [];
+  public world: World = new World();
 
   public get hash() {
-    return `${this.gridX}, ${this.gridY}: ${this.layers.length}`;
+    return `${this.gridX}, ${this.gridY}: ${this.layers.length}: ${this.removable}`;
   }
 
   private $coordinate: [number, number] = [0, 0];
@@ -85,6 +87,14 @@ export default class Tile {
 
   get leftId() {
     return this.id[4];
+  }
+
+  setWorld(world: World) {
+    this.world = world;
+  }
+
+  get removable() {
+    return this.world.canRemove(this);
   }
 
   from(tile: Tile) {

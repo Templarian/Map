@@ -62,7 +62,7 @@ export default class World extends LightningElement {
     this.template.host.addEventListener('mousedown', this.mouseDownHandler);
     this.template.host.addEventListener('mouseup', this.mouseUpHandler);
     this.template.host.addEventListener('mousemove', this.mouseMoveHandler);
-    this.addEventListener('addtile', this.addTileHandler)
+    this.addEventListener('addtile', this.addTileHandler);
   }
 
   @track isDragging = false;

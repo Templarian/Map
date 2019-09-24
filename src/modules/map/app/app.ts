@@ -39,14 +39,30 @@ export default class App extends LightningElement {
     }
   }
 
-  connectedCallback() {
-    this.addEventListener('addtile', this.addTile.bind<any>(this));
+  addTileHandler: any;
+  deleteTileHandler: any;
+
+  constructor() {
+    super();
+    this.addTileHandler = this.handleAddTile.bind(this);
+    this.deleteTileHandler = this.handleDeleteTile.bind(this);
   }
 
-  addTile(e: CustomEvent) {
+  connectedCallback() {
+    this.addEventListener('addtile', this.addTileHandler);
+    this.addEventListener('deletetile', this.deleteTileHandler);
+  }
+
+  handleAddTile(e: CustomEvent<any>) {
     const { x, y } = e.detail;
     this.world!.addTile(x, y, null);
-    this.tileCount = this.world!.tileCount;
+    this.tileCount = this.world.tileCount;
+  }
+
+  handleDeleteTile(e: CustomEvent<any>) {
+    this.world.removeTile(e.detail.tile);
+    this.tileCount = this.world.tileCount;
+    console.log('deleted');
   }
 
   get data() {

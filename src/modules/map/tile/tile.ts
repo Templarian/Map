@@ -28,6 +28,10 @@ export default class Tile extends LightningElement {
         return this.tile.coordinate[1];
     }
 
+    get removable() {
+        return this.tile.removable;
+    }
+
     get computedClass() {
         return 'tile';
     }
@@ -44,8 +48,13 @@ export default class Tile extends LightningElement {
     }
 
     handleDelete() {
-        alert('delete');
-        console.log('testing');
+        this.dispatchEvent(new CustomEvent('deletetile', {
+            detail: {
+                tile: this.tile
+            },
+            bubbles: true,
+            composed: true
+        }));
     }
 
     @track openDeleteComment = false;
@@ -66,10 +75,14 @@ export default class Tile extends LightningElement {
     tileWallHandler(e: MouseEvent) {
         const ele = e.currentTarget as HTMLElement;
         const layer = new Layer();
-        layer.id = 'wall-inner-left-1';
-        layer.file = 'wall-inner-left-1';
+        if (this.insideActive) {
+            layer.id = `wall-inner-${ele.dataset.wall}-1`;
+            layer.file = `wall-inner-${ele.dataset.wall}-1`;
+        } else {
+            layer.id = `wall-outer-${ele.dataset.wall}-1`;
+            layer.file = `wall-outer-${ele.dataset.wall}-1`;
+        }
         this.tile.layers.push(layer);
-        console.log(ele.dataset.wall)
         // call update
         this.dispatchEvent(new CustomEvent('updatetile', {}));
     }

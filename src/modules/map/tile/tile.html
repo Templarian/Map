@@ -26,11 +26,13 @@
                     <ui-icon slot="left" path={mdiCommentRemove}></ui-icon>
                     Delete Comment
                 </ui-menu-item>
-                <ui-menu-separator></ui-menu-separator>
-                <ui-menu-item onclick={handleDelete}>
-                    <ui-icon slot="left" path={mdiDelete}></ui-icon>
-                    Delete
-                </ui-menu-item>
+                <template if:true={removable}>
+                    <ui-menu-separator></ui-menu-separator>
+                    <ui-menu-item onclick={handleDelete}>
+                        <ui-icon slot="left" path={mdiDelete}></ui-icon>
+                        Delete Tile
+                    </ui-menu-item>
+                </template>
             </ui-menu>
         </ui-context-menu>
         <ui-menu slot="menu">
@@ -101,58 +103,58 @@
             <div if:true={outsideActive} class="wall">
                 <div>
                     <button onclick={tileWallHandler} data-wall="9">
-                        <img src="resources/tiles/wall-outside-9.svg"></img>
+                        <img src="resources/tiles/wall-outer-9.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="1">
-                        <img src="resources/tiles/wall-outside-1.svg"></img>
+                        <img src="resources/tiles/wall-outer-1.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="3">
-                        <img src="resources/tiles/wall-outside-3.svg"></img>
+                        <img src="resources/tiles/wall-outer-3.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="11">
-                        <img src="resources/tiles/wall-outside-11.svg"></img>
+                        <img src="resources/tiles/wall-outer-11.svg"></img>
                     </button>
                 </div>
                 <div>
                     <button onclick={tileWallHandler} data-wall="8">
-                        <img src="resources/tiles/wall-outside-8.svg"></img>
+                        <img src="resources/tiles/wall-outer-8.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="0">
-                        <img src="resources/tiles/wall-outside-0.svg"></img>
+                        <img src="resources/tiles/wall-outer-0.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="2">
-                        <img src="resources/tiles/wall-outside-2.svg"></img>
+                        <img src="resources/tiles/wall-outer-2.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="10">
-                        <img src="resources/tiles/wall-outside-10.svg"></img>
+                        <img src="resources/tiles/wall-outer-10.svg"></img>
                     </button>
                 </div>
                 <div>
                     <button onclick={tileWallHandler} data-wall="12">
-                        <img src="resources/tiles/wall-outside-12.svg"></img>
+                        <img src="resources/tiles/wall-outer-12.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="4">
-                        <img src="resources/tiles/wall-outside-4.svg"></img>
+                        <img src="resources/tiles/wall-outer-4.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="6">
-                        <img src="resources/tiles/wall-outside-6.svg"></img>
+                        <img src="resources/tiles/wall-outer-6.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="14">
-                        <img src="resources/tiles/wall-outside-14.svg"></img>
+                        <img src="resources/tiles/wall-outer-14.svg"></img>
                     </button>
                 </div>
                 <div>
                     <button onclick={tileWallHandler} data-wall="13">
-                        <img src="resources/tiles/wall-outside-13.svg"></img>
+                        <img src="resources/tiles/wall-outer-13.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="5">
-                        <img src="resources/tiles/wall-outside-5.svg"></img>
+                        <img src="resources/tiles/wall-outer-5.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="7">
-                        <img src="resources/tiles/wall-outside-7.svg"></img>
+                        <img src="resources/tiles/wall-outer-7.svg"></img>
                     </button>
                     <button onclick={tileWallHandler} data-wall="15">
-                        <img src="resources/tiles/wall-outside-15.svg"></img>
+                        <img src="resources/tiles/wall-outer-15.svg"></img>
                     </button>
                 </div>
             </div>
