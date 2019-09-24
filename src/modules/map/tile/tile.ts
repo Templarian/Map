@@ -38,6 +38,10 @@ export default class Tile extends LightningElement {
         return this.tile.removable;
     }
 
+    get layerCount() {
+        return this.tile.layers.length;
+    }
+
     get computedClass() {
         return 'tile';
     }
