@@ -29,7 +29,7 @@ export default class Form extends LightningElement {
     this.dispatchEvent(new CustomEvent('change', {
       detail: {
         inputs: this.inputs,
-        valid: this.inputs.find((input: any) => !input.valid) === null
+        valid: this.inputs.find((input: any) => !input.valid) !== null
       }
     }));
   }
@@ -38,7 +38,7 @@ export default class Form extends LightningElement {
     this.dispatchEvent(new CustomEvent('submit', {
       detail: {
         inputs: this.inputs,
-        valid: this.inputs.find((input: any) => !input.valid) === null
+        valid: this.inputs.find((input: any) => !input.valid) !== null
       }
     }));
   }

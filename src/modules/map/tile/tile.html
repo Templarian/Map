@@ -38,8 +38,15 @@
         <ui-menu slot="menu">
             <div style="padding:0.5rem 0.5rem 0.25rem 0.5rem">
                 <ui-button-group block>
-                    <ui-button active={insideActive} onclick={handleToggleInside}>Inside</ui-button>
-                    <ui-button active={outsideActive} onclick={handleToggleOutside}>Outside</ui-button>
+                    <ui-button active={insideActive} onclick={handleToggleInside}>
+                        <ui-icon path={mdiBorderAll}></ui-icon>
+                    </ui-button>
+                    <ui-button active={outsideActive} onclick={handleToggleOutside}>
+                        <ui-icon path={mdiBorderInside}></ui-icon>
+                    </ui-button>
+                    <ui-button active={decalActive} onclick={handleToggleDecal}>
+                        <ui-icon path={mdiStarOutline}></ui-icon>
+                    </ui-button>
                 </ui-button-group>
             </div>
             <div if:true={insideActive} class="wall">
@@ -155,6 +162,64 @@
                     </button>
                     <button onclick={tileWallHandler} data-wall="15">
                         <img src="resources/tiles/wall-outer-15.svg"></img>
+                    </button>
+                </div>
+            </div>
+            <div if:true={decalActive} class="wall">
+                <div>
+                    <button onclick={tileWallHandler} data-wall="9">
+                        <img src="resources/tiles/decal-stone.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="1">
+                        <img src="resources/tiles/decal-rubble-1.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="3">
+                        <img src="resources/tiles/decal-stone-hex.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="11">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="8">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="0">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="2">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="10">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="12">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="4">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="6">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="14">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                </div>
+                <div>
+                    <button onclick={tileWallHandler} data-wall="13">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="5">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="7">
+                        <img src="resources/tiles/decal-empty.svg"></img>
+                    </button>
+                    <button onclick={tileWallHandler} data-wall="15">
+                        <img src="resources/tiles/decal-empty.svg"></img>
                     </button>
                 </div>
             </div>

@@ -6,7 +6,10 @@ import {
     mdiDelete,
     mdiPencil,
     mdiCommentRemove,
-    mdiCommentPlus
+    mdiCommentPlus,
+    mdiBorderAll,
+    mdiBorderInside,
+    mdiStarOutline
 } from '@mdi/js';
 
 export default class Tile extends LightningElement {
@@ -16,6 +19,9 @@ export default class Tile extends LightningElement {
     @track mdiDelete: string = mdiDelete;
     @track mdiPencil: string = mdiPencil;
     @track mdiCommentPlus: string = mdiCommentPlus;
+    @track mdiBorderAll: string = mdiBorderAll;
+    @track mdiBorderInside: string = mdiBorderInside;
+    @track mdiStarOutline: string = mdiStarOutline;
 
     @api tile: TileCls = new TileCls();
     @api hash: string = '';
@@ -91,6 +97,7 @@ export default class Tile extends LightningElement {
     handleToggleInside(e: MouseEvent) {
         this.insideActive = true;
         this.outsideActive = false;
+        this.decalActive = false;
         e.stopPropagation();
     }
 
@@ -98,6 +105,15 @@ export default class Tile extends LightningElement {
     handleToggleOutside(e: MouseEvent) {
         this.insideActive = false;
         this.outsideActive = true;
+        this.decalActive = false;
+        e.stopPropagation();
+    }
+
+    @track decalActive: boolean = false;
+    handleToggleDecal(e: MouseEvent) {
+        this.insideActive = false;
+        this.outsideActive = false;
+        this.decalActive = true;
         e.stopPropagation();
     }
 
