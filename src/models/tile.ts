@@ -20,7 +20,7 @@ export default class Tile {
   public world: World = new World();
 
   public get hash() {
-    return `${this.gridX}, ${this.gridY}: ${this.layers.length}: ${this.removable}`;
+    return `${this.gridX}, ${this.gridY}: ${this.layersCount}: ${this.removable}`;
   }
 
   private $coordinate: [number, number] = [0, 0];
@@ -95,6 +95,10 @@ export default class Tile {
 
   get removable() {
     return this.world.canRemove(this);
+  }
+
+  get layersCount() {
+    return this.layers.length;
   }
 
   from(tile: Tile) {

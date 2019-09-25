@@ -98,6 +98,15 @@
         </ui-dropdown>
     </section>
     <section>
+        <h2>Picker</h2>
+        <ui-picker>
+            <ui-button>Click Here</ui-button>
+            <div slot="menu">
+                Stuff here!
+            </div>
+        </ui-picker>
+    </section>
+    <section>
         <h2>Context Menu</h2>
         <p>Right click the button below.</p>
         <ui-context-menu>
@@ -110,6 +119,21 @@
                 <ui-menu-item>Fake Option 3</ui-menu-item>
             </ui-menu>
         </ui-context-menu>
+    </section>
+    <section>
+        <h2>Card</h2>
+        <ui-card shadow={cardShadow}>
+            <ui-card-header>Header</ui-card-header>
+            <ui-card-body>
+                <p>Body Content</p>
+            </ui-card-body>
+            <ui-card-footer>
+                <ui-button onclick={handleShadowClick} data-shadow="0">Shadow 0</ui-button>&nbsp;
+                <ui-button onclick={handleShadowClick} data-shadow="1">Shadow 1</ui-button>&nbsp;
+                <ui-button onclick={handleShadowClick} data-shadow="2">Shadow 2</ui-button>&nbsp;
+                <ui-button onclick={handleShadowClick} data-shadow="3">Shadow 3</ui-button>
+            </ui-card-footer>
+        </ui-card>
     </section>
     <section>
         <h2>Load Map</h2>

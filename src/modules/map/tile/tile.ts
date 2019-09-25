@@ -1,6 +1,6 @@
 import { LightningElement, track, api } from 'lwc';
 import TileCls from 'models/tile';
-import { addToast } from 'services/toastService';
+import { toast } from 'services/toastService';
 import Layer from 'models/layer';
 import {
     mdiDelete,
@@ -38,7 +38,7 @@ export default class Tile extends LightningElement {
         return this.tile.removable;
     }
 
-    get layerCount() {
+    get layersCount() {
         return this.tile.layers.length;
     }
 
@@ -79,7 +79,7 @@ export default class Tile extends LightningElement {
     confirmDeleteComment() {
         this.tile.comment = '';
         this.openDeleteComment = false;
-        addToast('Deleted Comment', 3);
+        toast('Deleted Comment', 3);
     }
 
     tileWallHandler(e: MouseEvent) {
@@ -94,7 +94,11 @@ export default class Tile extends LightningElement {
         }
         this.tile.layers.push(layer);
         // call update
-        this.dispatchEvent(new CustomEvent('updatetile', {}));
+        this.dispatchEvent(new CustomEvent('updatetile', {
+            detail: {},
+            bubbles: true,
+            composed: true
+        }));
     }
 
     @track insideActive: boolean = true;

@@ -23,14 +23,14 @@ function pushToast(toast: Toast) {
   return toast.id;
 }
 
-export function addToast(message: string, seconds = 0) {
+export function toast(message: string, seconds = 0) {
   var toast = new Toast();
   toast.message = message;
   toast.seconds = seconds;
   return pushToast(toast);
 }
 
-export function addErrorToast(message: string, seconds = 0) {
+export function errorToast(message: string, seconds = 0) {
   var toast = new Toast();
   toast.message = message;
   toast.seconds = seconds;
@@ -38,7 +38,7 @@ export function addErrorToast(message: string, seconds = 0) {
   return pushToast(toast);
 }
 
-export function addWarningToast(message: string, seconds = 0) {
+export function warningToast(message: string, seconds = 0) {
   var toast = new Toast();
   toast.message = message;
   toast.seconds = seconds;
@@ -46,7 +46,7 @@ export function addWarningToast(message: string, seconds = 0) {
   return pushToast(toast);
 }
 
-export function addLoadingToast(message: string, seconds = 0) {
+export function loadingToast(message: string, seconds = 0) {
   var toast = new Toast();
   toast.message = message;
   toast.seconds = seconds;

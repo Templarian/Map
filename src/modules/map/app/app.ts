@@ -1,6 +1,6 @@
 import { LightningElement, track, wire } from 'lwc';
 import { getMap } from 'services/mapService';
-import { addToast, addErrorToast, addWarningToast, addLoadingToast, removeToast } from 'services/toastService';
+import { toast, errorToast, warningToast, loadingToast, removeToast } from 'services/toastService';
 import World from 'models/world';
 import {
   mdiAccount,
@@ -34,22 +34,25 @@ export default class App extends LightningElement {
     if (error) {
       this.world = new World();
       this.tileId = null;
-      addErrorToast('Failed to load map!', 5000);
+      errorToast('Failed to load map!', 5000);
       removeToast(this.loadingToastId);
     }
   }
 
   addTileHandler: any;
+  updateTileHandler: any;
   deleteTileHandler: any;
 
   constructor() {
     super();
     this.addTileHandler = this.handleAddTile.bind(this);
+    this.updateTileHandler = this.handleUpdateTile.bind(this);
     this.deleteTileHandler = this.handleDeleteTile.bind(this);
   }
 
   connectedCallback() {
     this.addEventListener('addtile', this.addTileHandler);
+    this.addEventListener('updatetile', this.updateTileHandler);
     this.addEventListener('deletetile', this.deleteTileHandler);
   }
 
@@ -57,6 +60,10 @@ export default class App extends LightningElement {
     const { x, y } = e.detail;
     this.world!.addTile(x, y, null);
     this.tileCount = this.world.tileCount;
+  }
+
+  handleUpdateTile(e: CustomEvent<any>) {
+    this.tileCount += this.tileCount;
   }
 
   handleDeleteTile(e: CustomEvent<any>) {
@@ -73,29 +80,35 @@ export default class App extends LightningElement {
 
   loadMap() {
     this.tileId = 'world';
-    this.loadingToastId = addLoadingToast('Loading Map...');
+    this.loadingToastId = loadingToast('Loading Map...');
   }
 
   loadMap2() {
     this.tileId = 'world1';
-    this.loadingToastId = addLoadingToast('Loading Map...');
+    this.loadingToastId = loadingToast('Loading Map...');
   }
 
   fireToast() {
-    addToast('Toast Message');
+    toast('Toast Message');
   }
 
   fireToast3() {
-    addToast('Toast Message 3 seconds', 3);
+    toast('Toast Message 3 seconds', 3);
   }
 
 
   fireErrorToast() {
-    addErrorToast('Toast Error Message');
+    errorToast('Toast Error Message');
   }
 
   fireWarningToast() {
-    addWarningToast('Toast Warning Message');
+    warningToast('Toast Warning Message');
+  }
+
+  @track cardShadow: string = '0';
+  handleShadowClick({ target }: any) {
+    const shadow = target.dataset.shadow;
+    this.cardShadow = shadow;
   }
 
 }
