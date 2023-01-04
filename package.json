@@ -6,7 +6,7 @@
     "bugs": "https://github.com/Templarian/tile/issues",
     "dependencies": {
         "@mdi/js": "^4.4.95",
-        "lwc-services": "^1.3.0-beta.17",
+        "lwc-services": "^1.3.12",
         "popper.js": "^1.15.0"
     },
     "devDependencies": {
